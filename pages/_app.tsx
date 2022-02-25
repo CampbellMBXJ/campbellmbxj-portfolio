@@ -2,8 +2,21 @@ import "../styles/globals.scss";
 import "../styles/variables.scss";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import Layout from '../components/layout';
+import { NextPage } from 'next';
+import { ChannelName } from '../types';
 
-function MyApp({ Component, pageProps }: AppProps) {
+type GetChannel = () => number;
+
+export type Page<P = {}, IP = P> = NextPage<P, IP> & {
+  getChannel: GetChannel;
+};
+
+type MyAppProps<P = {}> = AppProps<P> & {
+  Component: Page<P>;
+};
+
+function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <div>
       <Head>
@@ -15,9 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <Layout channel={Component.getChannel()}>
         <Component {...pageProps} />
-      </main>
+      </Layout>
     </div>
   );
 }

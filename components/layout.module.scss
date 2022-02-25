@@ -1,9 +1,16 @@
 .container {
+  min-height: 100vh;
   padding: 0 2rem;
   display: flex;
   flex: 1;
   flex-direction: column;
-  background-image: url("/images/sydney_pixelated.webp");
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.1) 0.3rem,
+    rgba(71, 71, 71, 0.2) 0.3rem,
+    rgba(71, 71, 71, 0.2) 0.6rem
+  ), url("/images/sydney_pixelated.webp");
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;
@@ -36,6 +43,14 @@
   flex-wrap: wrap;
 }
 
+.header {
+  display: flex;
+  height: 4rem;
+  padding-top: 1.2rem;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
 .footer {
   display: flex;
   height: 4rem;
@@ -43,9 +58,19 @@
   justify-content: space-between;
   flex-direction: row;
   padding: 1rem 0;
+}
 
-  span {
-    font-size: 1.2rem;
+.arrows {
+  width: 1rem;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1.8rem;
+
+  div {
+    font-weight: 900;
+    transform: scale(1.8, 1);
   }
 }
 
