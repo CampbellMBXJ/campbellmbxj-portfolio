@@ -1,0 +1,48 @@
+@mixin glitch-text-shadow {
+  text-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset) 0
+      var(--vhs-blue),
+    var(--shadow-offset) calc(var(--shadow-offset) * -1) 0 var(--vhs-pink);
+}
+
+@mixin glitch-box-shadow {
+  box-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset) 0
+      var(--vhs-blue),
+    var(--shadow-offset) calc(var(--shadow-offset) * -1) 0 var(--vhs-pink);
+}
+
+// ********************************************
+// Glitch borders inspired by:
+// https://github.com/NigelOToole/pixel-borders
+// ********************************************
+
+@function glitch-borders-image($corner-size) {
+  $svg: "";
+  $svg-path: "";
+  $svg-size: $corner-size * 6;
+  $color1: "%23cec6cb";
+  $color2: "%23FF81B7";
+  $color3: "%238CD9E3";
+
+  $svg-path: "M2 2h2v2H2zM4 0h2v2H4zM10 4h2v2h-2zM0 4h2v2H0zM6 0h2v2H6zM8 2h2v2H8zM8 8h2v2H8zM6 10h2v2H6zM0 6h2v2H0zM10 6h2v2h-2zM4 10h2v2H4zM2 8h2v2H2z";
+  $svg: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='#{$svg-size}' height='#{$svg-size}'><path d='#{$svg-path}' fill='#{$color2}' transform='translate(-1, 1)' fill-opacity='0.25'/><path d='#{$svg-path}' fill='#{$color3}' transform='translate(1, 1)' fill-opacity='0.25'/><path d='#{$svg-path}' fill='#{$color1}' fill-opacity='0.8'/></svg>";
+
+  @return $svg;
+}
+
+@mixin glitch-borders($border-size, $border-color) {
+  $corner-size: 2;
+
+  @supports (border-image-source: none) {
+    border-radius: ($border-size * ($corner-size + 2)) + ($corner-size * 2);
+  }
+
+  border-style: solid;
+  border-width: $border-size;
+  border-color: $border-color;
+
+  border-image-slice: $corner-size * 2;
+  border-image-width: $corner-size;
+  border-image-outset: 0;
+
+  border-image-source: url(glitch-borders-image($corner-size));
+}

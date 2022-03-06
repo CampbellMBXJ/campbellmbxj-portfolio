@@ -6,8 +6,8 @@ const Home: Page = () => {
   return (
     <>
       <div>
-        <h2>CAMPBELL MERCER</h2>
-        <h5>SOFTWARE ENGINEER</h5>
+        <h1>CAMPBELL MERCER</h1>
+        <h3>SOFTWARE ENGINEER</h3>
       </div>
     </>
   );

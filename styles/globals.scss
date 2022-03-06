@@ -1,3 +1,5 @@
+@use 'mixins.scss';
+
 @font-face {
   font-family: "VCR_OSD_MONO";
   font-style: normal;
@@ -14,9 +16,9 @@ html {
 }
 
 body {
-  font-size: 12px;
-  font-size: 1.2rem;
-  @extend .glitch-text; // Defualt to glitch text
+  font-size: 18px;
+  font-size: 1.8rem;
+  @extend .primary-text; // Defualt to glitch text
 }
 
 *,
@@ -29,8 +31,8 @@ body {
 }
 
 p {
-  font-size: 12px;
-  font-size: 1.2rem;
+  font-size: 18px;
+  font-size: 1.8rem;
   margin: 32px 0;
 }
 
@@ -40,7 +42,7 @@ a {
 }
 
 span {
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }
 
 h1,
@@ -53,9 +55,26 @@ h6 {
   margin: 0.5rem 0;
 }
 
-.glitch-text {
-  color: var(--off-white);
-  text-shadow: calc(var(--shadow-offset) * -1) var(--shadow-offset) 0
-      var(--vhs-blue),
-    var(--shadow-offset) calc(var(--shadow-offset) * -1) 0 var(--vhs-pink);
+.primary-text {
+  color: var(--white-primary);
+  @include mixins.glitch-text-shadow;
+}
+
+.secondary-text {
+  color: var(--white-secondary);
+  @include mixins.glitch-text-shadow;
+}
+
+.clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+@media only screen and (min-width: 1600px) {
+  // Site to scale with width
+  html {
+    font-size: 0.6vw;
+  }
 }

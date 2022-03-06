@@ -1,0 +1,18 @@
+@use '../../styles/mixins.scss';
+
+.container {
+  width: 100%;
+  margin: 4rem 0;
+  padding: 2rem;
+
+  @include mixins.glitch-borders(
+    $border-size: 4px,
+    $border-color: #cec6cb
+  );
+}
+
+@media only screen and (min-width: 1050px) {
+  .container {
+    width: 45%;
+  }
+}

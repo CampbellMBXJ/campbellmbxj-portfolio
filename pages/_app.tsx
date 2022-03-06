@@ -1,10 +1,9 @@
-import "../styles/globals.scss";
-import "../styles/variables.scss";
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Layout from '../components/layout';
-import { NextPage } from 'next';
-import { ChannelName } from '../types';
+import Layout from "../components/layout/layout";
+import "../styles/globals.scss";
+import "../styles/variables.scss";
 
 type GetChannel = () => number;
 
@@ -20,7 +19,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <div>
       <Head>
-        <title>CampbellMBXJ | Portfolio</title>
+        <title>CampbellMBXJ | Software Engineer</title>
         <meta
           name="description"
           content="The software portfolio of Campbell Mercer-Butcher"

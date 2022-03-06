@@ -1,0 +1,91 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: min(80rem, 90%);
+  height: min(60%, 40rem);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--vhs-green);
+
+  transform: scaleY(0.02) scaleX(0);
+  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
+  &--close {
+    transform: scale(1);
+    animation: unfoldOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+  }
+
+  footer,
+  header {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    padding: 0 2rem;
+
+    color: var(--gray-medium);
+  }
+
+  .main-content {
+    flex: 1;
+    background-color: var(--vhs-blue);
+  }
+
+  footer {
+    justify-content: flex-end;
+  }
+
+  .close {
+    margin-left: auto;
+    background-color: var(--vhs-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    width: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    span {
+      transform: rotate(45deg);
+      padding-left: 0.25rem;
+      padding-bottom: 0.25rem;
+    }
+  }
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.02) scaleX(0);
+  }
+  50% {
+    transform: scaleY(0.02) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
+  }
+}
+
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
+  }
+  50% {
+    transform: scaleY(0.02) scaleX(1);
+  }
+  100% {
+    transform: scaleY(0.02) scaleX(0);
+  }
+}
