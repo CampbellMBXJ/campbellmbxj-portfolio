@@ -13,6 +13,6 @@ const Home: Page = () => {
   );
 };
 
-Home.getChannel = () => ChannelName["00 HOME"];
+Home.getChannel = () => ChannelName["01 HOME"];
 
 export default Home;

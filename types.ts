@@ -1,8 +1,8 @@
 export enum ChannelName {
-  "00 HOME",
-  "01 WHO",
-  "02 PROJECTS",
-  "03 WORK"
+  "01 HOME",
+  "02 WHO",
+  "03 PROJECTS",
+  "04 WORK"
 }
 
 export enum ChannelRoute {

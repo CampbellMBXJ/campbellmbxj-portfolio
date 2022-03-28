@@ -78,6 +78,6 @@ const Work: Page = () => {
   );
 };
 
-Work.getChannel = () => ChannelName["03 WORK"];
+Work.getChannel = () => ChannelName["04 WORK"];
 
 export default Work;

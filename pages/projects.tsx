@@ -5,6 +5,6 @@ const Projects: Page = () => {
   return <h1>PROJECTS</h1>;
 };
 
-Projects.getChannel = () => ChannelName["02 PROJECTS"];
+Projects.getChannel = () => ChannelName["03 PROJECTS"];
 
 export default Projects;

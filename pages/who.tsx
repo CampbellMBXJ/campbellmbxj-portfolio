@@ -8,6 +8,6 @@ const Who: Page = () => {
   );
 }
 
-Who.getChannel = () => ChannelName['01 WHO']
+Who.getChannel = () => ChannelName['02 WHO']
 
 export default Who;
