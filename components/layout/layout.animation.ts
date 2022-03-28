@@ -2,13 +2,13 @@ export const fadeOutAnimation = {
   name: "crt-warp",
   variants: {
     initial: {
-      opacity: 0.9,
+      opacity: 0.7,
     },
     animate: {
       opacity: 0.2,
     },
     exit: {
-      opacity: 0.9
+      opacity: 0.7
     },
   },
   transition: {

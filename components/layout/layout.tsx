@@ -2,12 +2,18 @@ import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
 import { useRouter } from "next/router";
 import { FC, MouseEvent } from "react";
 import { ChannelName, ChannelRoute } from "../../types";
-import { fadeInAnimation, fadeOutAnimation } from "./layout.animation";
+import { fadeOutAnimation } from "./layout.animation";
+import { Howl } from 'howler';
 import styles from "./layout.module.scss";
 
 type LayoutProps = {
   channel: number;
 };
+
+const staticFX = new Howl({
+  src: ['/audio/crt_static.wav'],
+  volume: 0.5
+});
 
 const totalChannels = Object.keys(ChannelRoute).length / 2;
 
@@ -19,8 +25,8 @@ const Layout: FC<LayoutProps> = ({ channel, children }) => {
     e.preventDefault();
 
     const newChannel = (channel + totalChannels + value) % totalChannels;
-    console.log(channel);
     router.push(ChannelRoute[newChannel]);
+    staticFX.play();
   };
 
   return (
