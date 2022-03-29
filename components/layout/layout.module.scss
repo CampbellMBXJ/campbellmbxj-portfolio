@@ -1,9 +1,38 @@
+.crt-frame__wood {
+  padding: 3rem;
+  background-image: url("/images/texture_wood.webp");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+.crt-frame__metalic {
+  padding: 3rem;
+  border-radius: 2rem;
+  border: 4px solid var(--gun-metal);
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("/images/texture_brushed_aluminum.jpg");
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+  box-shadow: 1px 1px 2rem #000 inset;
+  height: 100%;
+  width: 100%;
+}
+
+.screen {
+  position: relative;
+  height: 100%;
+}
+
 .container {
-  min-height: 100vh;
+  height: 100%;
   padding: 0 4rem;
   display: flex;
   flex: 1;
   flex-direction: column;
+  overflow-y: scroll;
 
   background: repeating-linear-gradient(
       0deg,
@@ -19,7 +48,7 @@
 
   &::before {
     content: " ";
-    position: fixed;
+    position: absolute;
     display: block;
     left: 0;
     top: 0;
@@ -40,7 +69,7 @@
 
 .animated {
   opacity: 0;
-  position: fixed;
+  position: absolute;
   display: block;
   left: 0;
   top: 0;
@@ -50,6 +79,8 @@
   background-position: 50% 0;
   background-size: cover;
   background-image: url("/images/static_rainbow_2.gif");
+  z-index: 3;
+  pointer-events: none;
 }
 
 .main-content {
@@ -94,7 +125,7 @@
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
   .footer {
     flex-direction: column;
     height: 10rem;
