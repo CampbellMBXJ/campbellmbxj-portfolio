@@ -1,68 +1,69 @@
-.container {
+.vhs-modal {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  right: calc(30rem + 2.5rem);
+  bottom: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
-.modal {
-  width: min(80rem, 90%);
-  height: min(60%, 40rem);
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+  &__modal {
+    width: min(80rem, 90%);
+    height: min(60%, 40rem);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
 
-  background-color: var(--vhs-green);
+    background-color: var(--vhs-green);
 
-  transform: scaleY(0.02) scaleX(0);
-  animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    transform: scaleY(0.02) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
 
-  &--close {
-    transform: scale(1);
-    animation: unfoldOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    color: var(--gray-medium);
+
+    &--close {
+      transform: scale(1);
+      animation: unfoldOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
   }
 
-  footer,
-  header {
+  &__footer,
+  &__header {
     display: flex;
     align-items: center;
     height: 4rem;
     padding: 0 2rem;
-
-    color: var(--gray-medium);
   }
 
-  .main-content {
+  &__body {
     flex: 1;
     background-color: var(--vhs-blue);
+    padding: 2rem;
   }
 
-  footer {
+  &__footer {
     justify-content: flex-end;
   }
+}
 
-  .close {
-    margin-left: auto;
-    background-color: var(--vhs-pink);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 2rem;
-    width: 2rem;
+.close-btn {
+  margin-left: auto;
+  background-color: var(--vhs-pink);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
 
-    &:hover {
-      cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
 
-    span {
-      transform: rotate(45deg);
-      padding-left: 0.25rem;
-      padding-bottom: 0.25rem;
-    }
+  &__cross {
+    transform: rotate(45deg);
+    padding-left: 0.25rem;
+    padding-bottom: 0.25rem;
   }
 }
 

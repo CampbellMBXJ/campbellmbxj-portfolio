@@ -1,21 +1,37 @@
 :root {
   // Colors
-  --vhs-yellow: #FFF9A5;
-  --vhs-blue: #8CD9E3;
-  --vhs-pink: #FF81B7;
-  --vhs-green: #52C752;
+  --vhs-yellow: #fff9a5;
+  --vhs-blue: #8cd9e3;
+  --vhs-pink: #ff81b7;
+  --vhs-green: #52c752;
 
   --gun-metal: #232224;
 
   --black: #191b20;
 
   --gray-dark: #262730;
-  --gray-medium: #3F4150;
-  --gray-light: #6A6C80;
+  --gray-medium: #3f4150;
+  --gray-light: #6a6c80;
 
   --white-secondary: #9e9b93;
   --white-primary: #cec6cb;
   --white: #ffffff;
+
+  // Gradients
+  --metalic-gradient: linear-gradient(
+    135deg,
+    #818181 0%,
+    #7c7c7c 51%,
+    #6d6d6d 68%,
+    #474747 100%
+  );
+  --silver-gradient: linear-gradient(
+    135deg,
+    #adadad 0%,
+    #e1e1e1 51%,
+    #dddddd 68%,
+    #f6f6f6 100%
+  );
 
   // Offsets
   --shadow-offset: 0.1rem;

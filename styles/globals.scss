@@ -1,5 +1,4 @@
 @use 'mixins.scss';
-
 @font-face {
   font-family: "VCR_OSD_MONO";
   font-style: normal;
@@ -65,14 +64,24 @@ h6 {
   @include mixins.glitch-text-shadow;
 }
 
+.engraved-text {
+  font-family: "Century Gothic", "Helvetica", sans-serif;
+  font-weight: 600;
+  color: var(--gray-medium);
+  text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+}
+
 .clickable {
   &:hover {
     cursor: pointer;
   }
 }
 
+.not-selectable {
+  user-select: none;
+}
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1800px) {
   // Site to scale with width
   html {
     font-size: 0.6vw;

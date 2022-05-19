@@ -4,6 +4,7 @@ import Head from "next/head";
 import Layout from "../components/layout/layout";
 import "../styles/globals.scss";
 import "../styles/variables.scss";
+import "../styles/range-input.scss";
 
 type GetChannel = () => number;
 

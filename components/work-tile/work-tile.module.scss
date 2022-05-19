@@ -1,6 +1,6 @@
 @use '../../styles/mixins.scss';
 
-.container {
+.work-tile {
   width: 100%;
   margin: 4rem 0;
   padding: 2rem;
@@ -12,7 +12,7 @@
 }
 
 @media only screen and (min-width: 1050px) {
-  .container {
+  .work-tile {
     width: 45%;
   }
 }

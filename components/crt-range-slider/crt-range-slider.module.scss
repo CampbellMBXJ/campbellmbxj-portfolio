@@ -1,0 +1,17 @@
+.range-slider {
+  &__numeral-list {
+    padding: 0 0.4rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__segment {
+    width: 100%;
+    font-size: 1.4rem;
+
+    &--last {
+      width: fit-content;
+    }
+  }
+}
