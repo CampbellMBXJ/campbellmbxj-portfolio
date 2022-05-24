@@ -1,14 +1,20 @@
 import { FC } from "react";
-import styles from './crt-button.module.scss';
+import styles from "./crt-button.module.scss";
 
 type CrtButtonProps = {
-  channel: number;
+  onClick: () => void;
 };
 
-const CrtButton: FC<CrtButtonProps> = ({ channel }) => {
-  return <div className={styles['crt-button']}>
-
-  </div>;
+const CrtButton: FC<CrtButtonProps> = (props) => {
+  return (
+    <div className={styles["crt-button"]}>
+      <input
+        className={styles["crt-button__input"]}
+        type="button"
+        onClick={props.onClick}
+      ></input>
+    </div>
+  );
 };
 
 export default CrtButton;

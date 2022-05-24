@@ -5,6 +5,7 @@ import Layout from "../components/layout/layout";
 import "../styles/globals.scss";
 import "../styles/variables.scss";
 import "../styles/range-input.scss";
+import ControlsProvider from "../contexts/controls";
 
 type GetChannel = () => number;
 
@@ -19,18 +20,20 @@ type MyAppProps<P = {}> = AppProps<P> & {
 function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <div>
-      <Head>
-        <title>CampbellMBXJ | Software Engineer</title>
-        <meta
-          name="description"
-          content="The software portfolio of Campbell Mercer-Butcher"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <ControlsProvider>
+        <Head>
+          <title>CampbellMBXJ | Software Engineer</title>
+          <meta
+            name="description"
+            content="The software portfolio of Campbell Mercer-Butcher"
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Layout channel={Component.getChannel()}>
-        <Component {...pageProps} />
-      </Layout>
+        <Layout channel={Component.getChannel()}>
+          <Component {...pageProps} />
+        </Layout>
+      </ControlsProvider>
     </div>
   );
 }

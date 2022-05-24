@@ -17,7 +17,10 @@ const RangeSlider: FC<RangeSliderProps> = (props) => {
     // Iterate through step to create a label
     for (let num = props.min; num < props.max; num += props.step) {
       segments.push(
-        <div className={cn(styles["range-slider__segment"], "engraved-text")}>
+        <div
+          key={num}
+          className={cn(styles["range-slider__segment"], "engraved-text")}
+        >
           {num}
         </div>
       );
@@ -25,7 +28,12 @@ const RangeSlider: FC<RangeSliderProps> = (props) => {
 
     segments.push(
       <div
-        className={cn(styles["range-slider__segment"], styles["range-slider__segment--last"], "engraved-text")}
+        key={"last"}
+        className={cn(
+          styles["range-slider__segment"],
+          styles["range-slider__segment--last"],
+          "engraved-text"
+        )}
       >
         {props.max}
       </div>

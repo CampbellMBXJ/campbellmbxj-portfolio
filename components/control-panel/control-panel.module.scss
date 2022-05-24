@@ -25,6 +25,15 @@
 
   &__btn-container {
     height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   &__label {
@@ -35,6 +44,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &--spaced {
+      margin-bottom: 0.8rem;
+    }
   }
 
   &__label-text {

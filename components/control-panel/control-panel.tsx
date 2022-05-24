@@ -1,8 +1,10 @@
 import cn from "classnames";
 import { Howl } from "howler";
 import { useRouter } from "next/router";
-import { FC } from "react";
+import { FC, useContext } from "react";
+import { ControlsCtx } from "../../contexts/controls";
 import { ChannelRoute } from "../../types";
+import CrtButton from "../crt-button/crt-button";
 import RangeSlider from "../crt-range-slider/crt-range-slider";
 import Speaker from "../speaker/speaker";
 import styles from "./control-panel.module.scss";
@@ -16,23 +18,26 @@ const staticFX = new Howl({
   volume: 0.5,
 });
 
-const totalChannels = Object.keys(ChannelRoute).length / 2;
-
 const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
   const router = useRouter();
+  const { isMuted, toggleIsMuted } = useContext(ControlsCtx);
 
   // Change the current channel by given value
   const changeChannel = (value: string) => {
     const newChannel = Number(value) - 1;
     router.push(ChannelRoute[newChannel]);
-    staticFX.play();
+    if (!isMuted) {
+      staticFX.play();
+    }
   };
 
   return (
     <div className={styles["control-panel"]}>
       <div className={styles["control-panel__selector"]}>
         <div className={cn(styles["control-panel__label"])}>
-          <span className={cn(styles["control-panel__label-text"], "engraved-text")}>
+          <span
+            className={cn(styles["control-panel__label-text"], "engraved-text")}
+          >
             CHANNEL
           </span>
         </div>
@@ -44,7 +49,45 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
           onChange={(e) => changeChannel(e.target.value)}
         />
       </div>
-      <div className={styles["control-panel__btn-container"]}></div>
+      <div className={styles["control-panel__btn-container"]}>
+        <div className={styles["control-panel__button"]}>
+          <div
+            className={cn(
+              styles["control-panel__label"],
+              styles["control-panel__label--spaced"]
+            )}
+          >
+            <span
+              className={cn(
+                styles["control-panel__label-text"],
+                "engraved-text"
+              )}
+            >
+              MUTE
+            </span>
+          </div>
+          <CrtButton onClick={toggleIsMuted}></CrtButton>
+        </div>
+
+        <div className={styles["control-panel__button"]}>
+          <div
+            className={cn(
+              styles["control-panel__label"],
+              styles["control-panel__label--spaced"]
+            )}
+          >
+            <span
+              className={cn(
+                styles["control-panel__label-text"],
+                "engraved-text"
+              )}
+            >
+              ON/OFF
+            </span>
+          </div>
+          <CrtButton onClick={toggleIsMuted}></CrtButton>
+        </div>
+      </div>
       <div className={styles["control-panel__speaker"]}>
         <Speaker />
       </div>
