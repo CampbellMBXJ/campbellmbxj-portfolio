@@ -33,23 +33,26 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
 
   return (
     <div className={styles["control-panel"]}>
-      <div className={styles["control-panel__selector"]}>
-        <div className={cn(styles["control-panel__label"])}>
-          <span
-            className={cn(styles["control-panel__label-text"], "engraved-text")}
-          >
-            CHANNEL
-          </span>
-        </div>
-        <RangeSlider
-          step={1}
-          min={1}
-          max={4}
-          value={channel + 1}
-          onChange={(e) => changeChannel(e.target.value)}
-        />
-      </div>
       <div className={styles["control-panel__btn-container"]}>
+        <div className={styles["control-panel__button"]}>
+          <div
+            className={cn(
+              styles["control-panel__label"],
+              styles["control-panel__label--spaced"]
+            )}
+          >
+            <span
+              className={cn(
+                styles["control-panel__label-text"],
+                "engraved-text"
+              )}
+            >
+              ON/OFF
+            </span>
+          </div>
+          <CrtButton onClick={toggleIsMuted}></CrtButton>
+        </div>
+
         <div className={styles["control-panel__button"]}>
           <div
             className={cn(
@@ -82,12 +85,30 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
                 "engraved-text"
               )}
             >
-              ON/OFF
+              EXIT TV
             </span>
           </div>
           <CrtButton onClick={toggleIsMuted}></CrtButton>
         </div>
       </div>
+
+      <div className={styles["control-panel__selector"]}>
+        <div className={cn(styles["control-panel__label"])}>
+          <span
+            className={cn(styles["control-panel__label-text"], "engraved-text")}
+          >
+            CHANNEL
+          </span>
+        </div>
+        <RangeSlider
+          step={1}
+          min={1}
+          max={4}
+          value={channel + 1}
+          onChange={(e) => changeChannel(e.target.value)}
+        />
+      </div>
+
       <div className={styles["control-panel__speaker"]}>
         <Speaker />
       </div>
