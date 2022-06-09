@@ -12,6 +12,28 @@
     background-size: cover;
   }
 
+  &__brand {
+    margin: auto;
+    margin-bottom: 0;
+    width: fit-content
+  }
+
+  &__image {
+    position: relative;
+    height: 5rem;
+    width: 10rem;
+  }
+
+  &__secondary {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &-item {
+      margin-top: 5rem;
+    }
+  }
+
   &__screen-frame {
     padding: 2.5rem;
     height: 100%;

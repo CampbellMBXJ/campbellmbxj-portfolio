@@ -1,11 +1,14 @@
 import cn from "classnames";
 import { Howl } from "howler";
+import Image from "next/image";
 import { useRouter } from "next/router";
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { ControlsCtx } from "../../contexts/controls";
 import { ChannelRoute } from "../../types";
 import CrtButton from "../crt-button/crt-button";
+import CrtLabel from "../crt-label/crt-label";
 import RangeSlider from "../crt-range-slider/crt-range-slider";
+import MetalicPanel from "../metalic-panel/metalic-panel";
 import Speaker from "../speaker/speaker";
 import styles from "./control-panel.module.scss";
 
@@ -21,6 +24,17 @@ const staticFX = new Howl({
 const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
   const router = useRouter();
   const { isMuted, toggleIsMuted } = useContext(ControlsCtx);
+  const [windowAR, setWindowAR] = useState<number>(0);
+
+  // Set window aspect ratio on resize
+  useEffect(() => {
+    resize();
+    window.addEventListener("resize", resize);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   // Change the current channel by given value
   const changeChannel = (value: string) => {
@@ -31,75 +45,22 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
     }
   };
 
+  const resize = () => {
+    setWindowAR(document.body.offsetWidth / document.body.offsetHeight);
+  };
+
+  // style={{ height: `${Math.min(100 + (windowAR - 2.5) * 20, 100)}%` }}
+
   return (
-    <div className={styles["control-panel"]}>
+    <MetalicPanel>
       <div className={styles["control-panel__btn-container"]}>
-        <div className={styles["control-panel__button"]}>
-          <div
-            className={cn(
-              styles["control-panel__label"],
-              styles["control-panel__label--spaced"]
-            )}
-          >
-            <span
-              className={cn(
-                styles["control-panel__label-text"],
-                "engraved-text"
-              )}
-            >
-              ON/OFF
-            </span>
-          </div>
-          <CrtButton onClick={toggleIsMuted}></CrtButton>
-        </div>
-
-        <div className={styles["control-panel__button"]}>
-          <div
-            className={cn(
-              styles["control-panel__label"],
-              styles["control-panel__label--spaced"]
-            )}
-          >
-            <span
-              className={cn(
-                styles["control-panel__label-text"],
-                "engraved-text"
-              )}
-            >
-              MUTE
-            </span>
-          </div>
-          <CrtButton onClick={toggleIsMuted}></CrtButton>
-        </div>
-
-        <div className={styles["control-panel__button"]}>
-          <div
-            className={cn(
-              styles["control-panel__label"],
-              styles["control-panel__label--spaced"]
-            )}
-          >
-            <span
-              className={cn(
-                styles["control-panel__label-text"],
-                "engraved-text"
-              )}
-            >
-              EXIT TV
-            </span>
-          </div>
-          <CrtButton onClick={toggleIsMuted}></CrtButton>
-        </div>
+        <CrtButton onClick={toggleIsMuted} label="ON/OFF"></CrtButton>
+        <CrtButton onClick={toggleIsMuted} label="MUTED"></CrtButton>
+        <CrtButton onClick={toggleIsMuted} label="EXIT TV"></CrtButton>
       </div>
 
       <div className={styles["control-panel__selector"]}>
-        <div className={cn(styles["control-panel__label"])}>
-          <span
-            className={cn(styles["control-panel__label-text"], "engraved-text")}
-          >
-            CHANNEL
-          </span>
-        </div>
+        <CrtLabel>Channel</CrtLabel>
         <RangeSlider
           step={1}
           min={1}
@@ -108,37 +69,7 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
           onChange={(e) => changeChannel(e.target.value)}
         />
       </div>
-
-      <div className={styles["control-panel__speaker"]}>
-        <Speaker />
-      </div>
-
-      {/* Screws (Position absolute - don't effect layout) */}
-      <div
-        className={cn(
-          styles["control-panel__screw"],
-          styles["control-panel__screw--top-left"]
-        )}
-      ></div>
-      <div
-        className={cn(
-          styles["control-panel__screw"],
-          styles["control-panel__screw--top-right"]
-        )}
-      ></div>
-      <div
-        className={cn(
-          styles["control-panel__screw"],
-          styles["control-panel__screw--bottom-left"]
-        )}
-      ></div>
-      <div
-        className={cn(
-          styles["control-panel__screw"],
-          styles["control-panel__screw--bottom-right"]
-        )}
-      ></div>
-    </div>
+    </MetalicPanel>
   );
 };
 

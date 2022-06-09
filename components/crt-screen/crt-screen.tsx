@@ -28,7 +28,7 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
 
     const newChannel = (channel + totalChannels + value) % totalChannels;
     router.push(ChannelRoute[newChannel]);
-    if (isMuted) {
+    if (!isMuted) {
       staticFX.play();
     }
   };

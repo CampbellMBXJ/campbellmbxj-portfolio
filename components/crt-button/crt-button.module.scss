@@ -1,11 +1,18 @@
 .crt-button {
-  background-image: url("/images/texture_wood.webp");
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  width: 33%;
+
+  &__button {
+    background-image: url("/images/texture_wood.webp");
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   &__input {
     width: 3rem;
