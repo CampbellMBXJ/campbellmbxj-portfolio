@@ -64,6 +64,16 @@ h6 {
   @include mixins.glitch-text-shadow;
 }
 
+.link {
+  color: var(--white-secondary);
+  @include mixins.glitch-text-shadow;
+  text-decoration: underline;
+
+  &--dark {
+    color: var(--gray-medium) !important;;
+  }
+}
+
 .engraved-text {
   font-family: "Century Gothic", "Helvetica", sans-serif;
   font-weight: 600;

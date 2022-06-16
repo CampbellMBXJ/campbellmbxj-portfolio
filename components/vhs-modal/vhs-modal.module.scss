@@ -10,7 +10,8 @@
 
   &__modal {
     width: min(80rem, 90%);
-    height: min(60%, 40rem);
+    min-height: min(60%, 40rem);
+    max-height: 80%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -40,6 +41,17 @@
     flex: 1;
     background-color: var(--vhs-blue);
     padding: 2rem;
+    overflow-y: scroll;
+
+    ul {
+      list-style-type: square;
+      list-style-position: outside;
+      padding-left: 4rem;
+      padding-top: 1rem;
+      li {
+        padding-top: 0.8rem;
+      }
+    }
   }
 
   &__footer {

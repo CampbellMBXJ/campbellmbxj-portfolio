@@ -17,6 +17,11 @@
   --white-primary: #cec6cb;
   --white: #ffffff;
 
+  --silver-dark: #b9b9b9;
+  --silver-med-dark: #dddddd;
+  --silver-med-light: #e1e1e1;
+  --silver-light: #f6f6f6;
+
   // Gradients
   --metalic-gradient: linear-gradient(
     135deg,
@@ -27,10 +32,10 @@
   );
   --silver-gradient: linear-gradient(
     135deg,
-    #adadad 0%,
-    #e1e1e1 51%,
-    #dddddd 68%,
-    #f6f6f6 100%
+    var(--silver-dark) 0%,
+    var(--silver-med-dark)51%,
+    var(--silver-med-light) 68%,
+    var(--silver-light) 100%
   );
 
   // Offsets

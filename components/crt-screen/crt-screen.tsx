@@ -60,9 +60,9 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
             </header>
             <main className={styles["screen__body"]}>{children}</main>
             <footer className={styles["screen__footer"]}>
-              <span className="not-selectable clickable">RESUME</span>
-              <span className="not-selectable clickable">GITHUB</span>
-              <span className="not-selectable clickable">LINKED IN</span>
+              <span className="not-selectable clickable link">RESUME</span>
+              <span className="not-selectable clickable link">GITHUB</span>
+              <span className="not-selectable clickable link">LINKED IN</span>
             </footer>
           </div>
 

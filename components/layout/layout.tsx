@@ -30,18 +30,6 @@ const Layout: FC<LayoutProps> = ({ channel, children }) => {
         <div className={styles["layout__secondary-item"]}>
           <Speaker />
         </div>
-
-        <div className={styles["layout__brand"]}>
-          <CrtLabel isText={false}>
-            <div className={styles["layout__image"]}>
-              <Image
-                src={"/images/cmb-logo.svg"}
-                alt={"Retro television logo"}
-                layout="fill"
-              />
-            </div>
-          </CrtLabel>
-        </div>
       </div>
     </div>
   );

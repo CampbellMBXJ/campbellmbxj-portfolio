@@ -1,0 +1,133 @@
+// Switch based on Codepen: https://codepen.io/marcusconnor/pen/QJNvMa
+
+.switch {
+  display: inline-block;
+  position: relative;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  width: 7em;
+  height: 4em;
+  overflow: hidden;
+  border-bottom: 0.5em solid var(--silver-med-light);
+  border-radius: 0 0 0.3rem 0.3rem;
+  margin: 0.5rem;
+
+  &--small {
+    // Change font size to scale switch
+    font-size: 0.55em; /* Sizes the switch */
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0.5em;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #999;
+    border: 0.5em solid var(--silver-med-light);
+    border-radius: 0.3rem 0.3rem 0 0;
+    border-bottom: 0;
+  }
+
+  & input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__left,
+  &__right {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5em;
+    width: 3em;
+    transition: 0.2s;
+    font-size: 1em;
+  }
+
+  &__left {
+    height: 2.4em;
+    width: 2.75em;
+    left: 0.85em;
+    bottom: 0.4em;
+    background-color: var(--silver-med-dark);
+    transform: rotate(15deg) skewX(15deg);
+  }
+
+  &__right {
+    right: 0.5em;
+    bottom: 0;
+    background-color: var(--silver-dark);
+  }
+
+  &__left::before,
+  &__right::before {
+    content: "";
+    position: absolute;
+    width: 0.4em;
+    height: 2.45em;
+    bottom: -0.45em;
+    background-color: var(--silver-dark);
+    transform: skewY(-65deg);
+  }
+
+  &__left::before {
+    left: -0.4em;
+  }
+
+  &__right::before {
+    right: -0.375em;
+    background-color: transparent;
+    transform: skewY(65deg);
+  }
+
+  input:checked + &__left {
+    bottom: 0px;
+    left: 0.5em;
+    height: 2.5em;
+    width: 3em;
+    transform: rotate(0deg) skewX(0deg);
+    background-color: var(--silver-dark);
+  }
+
+  input:checked + &__left::before {
+    background-color: transparent;
+    width: 3.0833em;
+  }
+
+  input:checked + &__left + &__right {
+    background-color: var(--silver-med-dark);
+    bottom: 0.4em;
+    right: 0.8em;
+    height: 2.4em;
+    width: 2.75em;
+    transform: rotate(-15deg) skewX(-15deg);
+  }
+
+  input:checked + &__left + &__right::before {
+    background-color: var(--silver-dark);
+  }
+
+  // /* Keyboard Users */
+  // input:focus + &__left {
+  //   color: #333;
+  // }
+
+  // input:checked:focus + &__left {
+  //   color: #fff;
+  // }
+
+  // input:focus + &__left + &__right {
+  //   color: #fff;
+  // }
+
+  // input:checked:focus + &__left + &__right {
+  //   color: #333;
+  // }
+}

@@ -1,0 +1,13 @@
+.projects {
+  display: flex;
+  flex: 1;
+  align-self: stretch;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
+
+  &__link {
+    display: block;
+    margin-top: 2rem;
+  }
+}
