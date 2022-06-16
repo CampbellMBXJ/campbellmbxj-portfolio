@@ -5,6 +5,7 @@ import Layout from "../components/layout/layout";
 import "../styles/globals.scss";
 import "../styles/variables.scss";
 import "../styles/range-input.scss";
+import "../node_modules/react-responsive-carousel/lib/styles/carousel.min.css";
 import ControlsProvider from "../contexts/controls";
 
 type GetChannel = () => number;

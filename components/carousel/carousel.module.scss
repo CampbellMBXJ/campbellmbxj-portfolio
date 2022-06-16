@@ -1,0 +1,31 @@
+.carousel {
+  &__item {
+    height: 30rem;
+  }
+
+  &__arrow {
+    position: absolute;
+    z-index: 2;
+    top: calc(50% - 1.75rem);
+    cursor: pointer;
+    font-size: 3.5rem;
+
+    &--left {
+      left: 15px;
+    }
+
+    &--right {
+      right: 15px;
+    }
+  }
+
+  &__indicator {
+    font-size: 0.8rem;
+    display: inline-block;
+    margin: 0 0.4rem;
+
+    &--active {
+      color: var(--gray-light);
+    }
+  }
+}

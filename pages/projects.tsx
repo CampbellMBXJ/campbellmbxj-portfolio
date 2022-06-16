@@ -5,6 +5,7 @@ import { ChannelName } from "../types";
 import { Page } from "./_app";
 import cn from "classnames";
 import styles from "./projects.module.scss";
+import Carousel from "../components/carousel/carousel";
 
 interface Project {
   linkLocation?: string;
@@ -13,6 +14,7 @@ interface Project {
   tagline?: string;
   technologies?: string[];
   description: ReactElement | string;
+  images?: string[];
 }
 
 const projects: Project[] = [
@@ -32,6 +34,14 @@ const projects: Project[] = [
     ],
     description:
       "My Moola is Australia’s first third-party banking application. Unifying the crowded financial landscape. My Moola required the creation of a banking API to read and write transactions on behalf of its users, a React native mobile application, and a React web app.",
+    images: [
+      "/images/projects/my-moola/accounts.png",
+      "/images/projects/my-moola/account-transactions.png",
+      "/images/projects/my-moola/insights.png",
+      "/images/projects/my-moola/select-a-bank.png",
+      "/images/projects/my-moola/new-bank-login.png",
+      "/images/projects/my-moola/transaction-confirmation.png",
+    ],
   },
   {
     title: "LogiCraft",
@@ -41,6 +51,24 @@ const projects: Project[] = [
       "LogiCraft is a logic gate schematic design web application that converts the schema into a Minecraft (world-building game) world file. The goal is to help a younger audience learn about computer science in a more familiar context. Built in under 24 hours as a team of four.",
     linkLocation: "https://github.com/logic-craft/LogiCraft",
     linkText: "View on GitHub",
+    images: [
+      "/images/projects/logicraft/uc_hackathon.jpg",
+      "/images/projects/logicraft/schematicraft.png",
+      "/images/projects/logicraft/schematicraft_2.png",
+    ]
+  },
+  {
+    title: "TravelEA",
+    tagline: "A travel based social media web application",
+    technologies: ["Java", "Scala", "JavaScript", "Play", "Twirl", "MySql"],
+    description: "A travel based planning/social media web application built as part of a team of eight. We were tasked with emulating a scrum environment while completing this project.",
+    images: [
+      "/images/projects/travelea/landing.png",
+      "/images/projects/travelea/home.png",
+      "/images/projects/travelea/people.png",
+      "/images/projects/travelea/trips.png",
+      "/images/projects/travelea/trip.png",
+    ]
   },
   {
     title: "Sm Compiler",
@@ -73,11 +101,17 @@ const Projects: Page = () => {
   const tileHandler = (project: Project) => {
     const body = (
       <>
+        {!!project.images && <Carousel images={project.images} />}
         {project.description}
         {!!project.linkLocation && !!project.linkText && (
           <a href={project.linkLocation} target={"_blank"} rel="noreferrer">
             <span
-              className={cn(styles["projects__link"], "link", "link--dark", "not-selectable")}
+              className={cn(
+                styles["projects__link"],
+                "link",
+                "link--dark",
+                "not-selectable"
+              )}
             >
               {project.linkText}
             </span>
