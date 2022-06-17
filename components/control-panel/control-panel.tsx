@@ -17,11 +17,6 @@ type ControlPanelProps = {
   channel: number;
 };
 
-const staticFX = new Howl({
-  src: ["/audio/crt_static.wav"],
-  volume: 0.5,
-});
-
 const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
   const router = useRouter();
   const { isMuted, toggleIsMuted } = useContext(ControlsCtx);
@@ -41,9 +36,6 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
   const changeChannel = (value: string) => {
     const newChannel = Number(value) - 1;
     router.push(ChannelRoute[newChannel]);
-    if (!isMuted) {
-      staticFX.play();
-    }
   };
 
   const resize = () => {

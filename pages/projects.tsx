@@ -5,7 +5,7 @@ import { ChannelName } from "../types";
 import { Page } from "./_app";
 import cn from "classnames";
 import styles from "./projects.module.scss";
-import Carousel from "../components/carousel/carousel";
+import CrtCarousel from "../components/crt-carousel/crt-carousel";
 
 interface Project {
   linkLocation?: string;
@@ -101,7 +101,7 @@ const Projects: Page = () => {
   const tileHandler = (project: Project) => {
     const body = (
       <>
-        {!!project.images && <Carousel images={project.images} />}
+        {!!project.images && <CrtCarousel images={project.images} />}
         {project.description}
         {!!project.linkLocation && !!project.linkText && (
           <a href={project.linkLocation} target={"_blank"} rel="noreferrer">

@@ -1,4 +1,4 @@
-@use 'mixins.scss';
+@use "mixins.scss";
 @font-face {
   font-family: "VCR_OSD_MONO";
   font-style: normal;
@@ -54,6 +54,10 @@ h6 {
   margin: 0.5rem 0;
 }
 
+h3 {
+  text-transform: uppercase;
+}
+
 .primary-text {
   color: var(--white-primary);
   @include mixins.glitch-text-shadow;
@@ -69,8 +73,10 @@ h6 {
   @include mixins.glitch-text-shadow;
   text-decoration: underline;
 
+  @extend .clickable;
+
   &--dark {
-    color: var(--gray-medium) !important;;
+    color: var(--gray-medium) !important;
   }
 }
 
@@ -78,22 +84,28 @@ h6 {
   font-family: "Century Gothic", "Helvetica", sans-serif;
   font-weight: 600;
   color: var(--gray-medium);
-  text-shadow: 0px 1px 0px rgba(255,255,255,.3), 0px -1px 0px rgba(0,0,0,.7);
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.3),
+    0px -1px 0px rgba(0, 0, 0, 0.7);
 }
 
 .clickable {
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 .not-selectable {
   user-select: none;
 }
 
-@media only screen and (min-width: 1800px) {
+@media only screen and (min-width: 1700px) {
   // Site to scale with width
   html {
-    font-size: 0.6vw;
+    font-size: 72.5%;
+  }
+}
+
+@media only screen and (min-width: 2300px) {
+  // Site to scale with width
+  html {
+    font-size: 0.5vw;
   }
 }

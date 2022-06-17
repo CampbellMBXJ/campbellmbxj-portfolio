@@ -39,7 +39,7 @@ const VhsModal: FC<VhsModalProps> = ({ children, closeModal }) => {
         <header className={styles["vhs-modal__header"]}>
           <span>1024 x 768 \ 30hz</span>
           <div className={styles["close-btn"]} onClick={() => animateClose()}>
-            <span className={styles["close-btn__cross"]}>+</span>
+            <span className={cn(styles["close-btn__cross"], "not-selectable")}>+</span>
           </div>
         </header>
         <div className={styles["vhs-modal__body"]}>{children}</div>

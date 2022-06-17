@@ -1,13 +1,13 @@
 import cn from "classnames";
 import Image from "next/image";
 import { Carousel as RRCarousel } from "react-responsive-carousel";
-import styles from "./carousel.module.scss";
+import styles from "./crt-carousel.module.scss";
 
 type Props = {
   images: string[];
 };
 
-const Carousel = (props: Props) => {
+const CrtCarousel = (props: Props) => {
   const slides = () => {
     return props.images.map((image, i) => (
       <div className={styles["carousel__item"]} key={i}>
@@ -28,7 +28,15 @@ const Carousel = (props: Props) => {
       infiniteLoop={true}
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
-          <div onClick={onClickHandler} title={label} className={cn(styles['carousel__arrow'], styles['carousel__arrow--left'])}>
+          <div
+            onClick={onClickHandler}
+            title={label}
+            className={cn(
+              styles["carousel__arrow"],
+              styles["carousel__arrow--left"],
+              "not-selectable"
+            )}
+          >
             ◄
           </div>
         )
@@ -38,7 +46,11 @@ const Carousel = (props: Props) => {
           <div
             onClick={onClickHandler}
             title={label}
-            className={cn(styles['carousel__arrow'], styles['carousel__arrow--right'])}
+            className={cn(
+              styles["carousel__arrow"],
+              styles["carousel__arrow--right"],
+              "not-selectable"
+            )}
           >
             ►
           </div>
@@ -48,7 +60,11 @@ const Carousel = (props: Props) => {
         if (isSelected) {
           return (
             <div
-            className={cn(styles['carousel__indicator'], styles['carousel__indicator--active'])}
+              className={cn(
+                styles["carousel__indicator"],
+                styles["carousel__indicator--active"],
+                "not-selectable"
+              )}
               aria-label={`Selected: ${label} ${index + 1}`}
               title={`Selected: ${label} ${index + 1}`}
             >
@@ -58,7 +74,7 @@ const Carousel = (props: Props) => {
         }
         return (
           <div
-          className={cn(styles['carousel__indicator'])}
+            className={cn(styles["carousel__indicator"], "not-selectable")}
             onClick={onClickHandler}
             onKeyDown={onClickHandler}
             key={index}
@@ -77,4 +93,4 @@ const Carousel = (props: Props) => {
   );
 };
 
-export default Carousel;
+export default CrtCarousel;

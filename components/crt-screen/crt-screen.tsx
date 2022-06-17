@@ -5,6 +5,7 @@ import { FC, MouseEvent, useContext } from "react";
 import { ControlsCtx } from "../../contexts/controls";
 import { ChannelName, ChannelRoute } from "../../types";
 import { fadeOutAnimation } from "./crt-screen.animation";
+import cn from "classnames";
 import styles from "./crt-screen.module.scss";
 
 type CrtScreenProps = {
@@ -13,7 +14,7 @@ type CrtScreenProps = {
 
 const staticFX = new Howl({
   src: ["/audio/crt_static.wav"],
-  volume: 0.5,
+  volume: 0.03,
 });
 
 const totalChannels = Object.keys(ChannelRoute).length / 2;
@@ -28,6 +29,9 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
 
     const newChannel = (channel + totalChannels + value) % totalChannels;
     router.push(ChannelRoute[newChannel]);
+  };
+
+  const playTransistionSound = () => {
     if (!isMuted) {
       staticFX.play();
     }
@@ -45,13 +49,21 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
               <div className={styles["arrows"]}>
                 {/* Unicode arrows */}
                 <div
-                  className={styles["arrows__item"]}
+                  className={cn(
+                    styles["arrows__item"],
+                    "clickable",
+                    "non-selectable"
+                  )}
                   onClick={(e) => changeChannel(1, e)}
                 >
                   ▲
                 </div>
                 <div
-                  className={styles["arrows__item"]}
+                  className={cn(
+                    styles["arrows__item"],
+                    "clickable",
+                    "non-selectable"
+                  )}
                   onClick={(e) => changeChannel(-1, e)}
                 >
                   ▼
@@ -61,8 +73,20 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
             <main className={styles["screen__body"]}>{children}</main>
             <footer className={styles["screen__footer"]}>
               <span className="not-selectable clickable link">RESUME</span>
-              <span className="not-selectable clickable link">GITHUB</span>
-              <span className="not-selectable clickable link">LINKED IN</span>
+              <a
+                href="https://github.com/CampbellMBXJ"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="not-selectable clickable link">GITHUB</span>
+              </a>
+              <a
+                href="www.linkedin.com/in/campbell-mercer-butcher"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="not-selectable clickable link">LINKED IN</span>
+              </a>
             </footer>
           </div>
 
@@ -71,6 +95,7 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
             className={styles["screen__rainbow"]}
             animate={fadeOutAnimation.animate}
             transition={fadeOutAnimation.transition}
+            onAnimationStart={playTransistionSound}
           ></m.div>
         </AnimatePresence>
       </LazyMotion>

@@ -22,8 +22,8 @@
     background-repeat: no-repeat;
     background-position: 50% 0;
     background-size: cover;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 
     &::-webkit-scrollbar {
       display: none; /* Chrome, Safari and Opera */
@@ -70,8 +70,7 @@
 
   &__body {
     display: flex;
-  flex: 1;
-  align-items: center;
+    flex: 1;
   }
 
   &__header {

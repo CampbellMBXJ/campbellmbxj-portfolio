@@ -1,0 +1,22 @@
+.who {
+  padding-top: 5rem;
+  padding-right: 2rem;
+
+  &__list {
+    list-style-type: none;
+  }
+
+  &__item {
+    padding: 0.3rem 0;
+  }
+}
+
+.video {
+  height: 25rem;
+  padding-top: 5rem;
+  margin-left: auto;
+
+  &__media {
+    object-fit: contain;
+  }
+}
