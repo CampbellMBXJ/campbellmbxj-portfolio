@@ -28,10 +28,13 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+  }
 
-    &-item {
-      margin-top: 5rem;
-    }
+  &__speaker {
+    margin-top: 5rem;
+  }
+
+  &__control-panel {
   }
 
   &__screen-frame {
@@ -61,6 +64,20 @@
     }
 
     &__secondary {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-height: 680px) {
+  .layout {
+    padding: 1.5rem;
+
+    &__screen-frame {
+      padding: 1.5rem;
+    }
+    
+    &__speaker {
       display: none;
     }
   }

@@ -41,3 +41,10 @@
     width: 6rem;
   }
 }
+
+@media screen and (max-height: 380px) {
+  .control-panel__selector {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+  }
+}

@@ -23,11 +23,11 @@ const Layout: FC<LayoutProps> = ({ channel, children }) => {
         <CrtScreen channel={channel}>{children}</CrtScreen>
       </div>
       <div className={styles["layout__secondary"]}>
-        <div className={styles["layout__secondary-item--end"]}>
+        <div className={styles["layout__control-panel"]}>
           <ControlPanel channel={channel} />
         </div>
 
-        <div className={styles["layout__secondary-item"]}>
+        <div className={styles["layout__speaker"]}>
           <Speaker />
         </div>
       </div>
