@@ -8,6 +8,9 @@ const Who: Page = () => {
   return (
     <>
       <div className={styles["who"]}>
+        <video autoPlay muted loop className={styles["video"]}>
+          <source src="/images/headshot.webm" type="video/webm" />
+        </video>
         <h3>About Me</h3>
         <p>
           I'm Campbell, a Software Engineer, passionate about all things web. I
@@ -36,10 +39,10 @@ const Who: Page = () => {
         </p>
 
         {/* Tecnologies */}
-        <h3>Technologies</h3>
+        <h3 className={styles["who__heading"]}>Technologies:</h3>
         <ul className={styles["who__list"]}>
           <li className={styles["who__item"]}>
-            Languages: Typescript, Java, Python, HTML5, CSS3
+            Languages: Typescript, Java, Python
           </li>
           <li className={styles["who__item"]}>
             Infastructure: AWS, Firebase, Openshift, Terraform, Cloudformation,
@@ -73,9 +76,6 @@ const Who: Page = () => {
           for a chat.
         </p>
       </div>
-      <video autoPlay muted loop className={styles["video"]}>
-        <source src="/images/headshot.webm" type="video/webm" />
-      </video>
     </>
   );
 };

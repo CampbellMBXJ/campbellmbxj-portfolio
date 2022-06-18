@@ -1,6 +1,20 @@
 .screen {
   position: relative;
   height: 100%;
+  background-color: black;
+  border-radius: 3rem;
+
+  // Animated div used for power on / off
+  &__animated {
+    height: 100%;
+    transform: scaleY(0.02) scaleX(0);
+    animation: unfoldIn 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+
+    &--off {
+      transform: scale(1);
+      animation: unfoldOut 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+  }
 
   &__container {
     height: 100%;
@@ -72,48 +86,36 @@
     display: flex;
     flex: 1;
   }
+}
 
-  &__header {
-    display: flex;
-    height: 6rem;
-    padding-top: 1.8rem;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
+@keyframes unfoldIn {
+  0% {
+    transform: scaleY(0.02) scaleX(0);
   }
-
-  &__footer {
-    display: flex;
-    height: 4rem;
-    width: 40rem;
-    justify-content: space-between;
-    flex-direction: row;
-    padding: 1rem 0;
+  50% {
+    transform: scaleY(0.02) scaleX(1);
+  }
+  100% {
+    transform: scaleY(1) scaleX(1);
   }
 }
 
-.arrows {
-  width: 1rem;
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 1.8rem;
-
-  &:hover {
-    cursor: pointer;
+@keyframes unfoldOut {
+  0% {
+    transform: scaleY(1) scaleX(1);
   }
-
-  &__item {
-    font-weight: 900;
-    transform: scale(1.5, 1);
+  50% {
+    transform: scaleY(0.02) scaleX(1);
+  }
+  100% {
+    transform: scaleY(0.02) scaleX(0);
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .screen__footer {
-    flex-direction: column;
-    height: 10rem;
-    width: 15rem;
+@media screen and (max-width: 900px) {
+  .screen {
+    &__container {
+      padding: 0 1.5rem;
+    }
   }
 }

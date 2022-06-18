@@ -2,6 +2,8 @@ import { createContext, FC, ReactNode, useState } from "react";
 
 type ControlsCtxType = {
   isMuted: boolean;
+  isPowered: boolean;
+  toggleIsPowered: () => void;
   toggleIsMuted: () => void;
 };
 
@@ -9,13 +11,22 @@ export const ControlsCtx = createContext<ControlsCtxType>(null as any);
 
 const ControlsProvider: FC<ReactNode> = ({ children }) => {
   const [isMuted, setIsMuted] = useState(false);
+  const [isPowered, setIsPowered] = useState(true);
 
   const toggleIsMuted = () => {
-    setIsMuted(!isMuted);
-  }
-  
+    setIsMuted((isMuted) => !isMuted);
+  };
+
+  const toggleIsPowered = () => {
+    setIsPowered((isPowered) => !isPowered);
+  };
+
   return (
-    <ControlsCtx.Provider value={{isMuted, toggleIsMuted}}>{children}</ControlsCtx.Provider>
+    <ControlsCtx.Provider
+      value={{ isMuted, toggleIsMuted, isPowered, toggleIsPowered }}
+    >
+      {children}
+    </ControlsCtx.Provider>
   );
 };
 

@@ -19,18 +19,7 @@ type ControlPanelProps = {
 
 const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
   const router = useRouter();
-  const { isMuted, toggleIsMuted } = useContext(ControlsCtx);
-  const [windowAR, setWindowAR] = useState<number>(0);
-
-  // Set window aspect ratio on resize
-  useEffect(() => {
-    resize();
-    window.addEventListener("resize", resize);
-
-    return () => {
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
+  const { toggleIsMuted, toggleIsPowered } = useContext(ControlsCtx);
 
   // Change the current channel by given value
   const changeChannel = (value: string) => {
@@ -38,18 +27,12 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
     router.push(ChannelRoute[newChannel]);
   };
 
-  const resize = () => {
-    setWindowAR(document.body.offsetWidth / document.body.offsetHeight);
-  };
-
-  const accessibilityHandler = (value: boolean) => {};
-
-  // style={{ height: `${Math.min(100 + (windowAR - 2.5) * 20, 100)}%` }}
+  // const accessibilityHandler = (value: boolean) => {};
 
   return (
     <MetalicPanel>
       <div className={styles["control-panel__btn-container"]}>
-        <CrtButton onClick={toggleIsMuted} label="POWER"></CrtButton>
+        <CrtButton onClick={toggleIsPowered} label="POWER"></CrtButton>
         <CrtButton onClick={toggleIsMuted} label="MUTE"></CrtButton>
       </div>
       <div className={styles["control-panel__selector"]}>
@@ -63,14 +46,15 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
         />
       </div>
       <div className={styles["control-panel__branding-row"]}>
-        <div className={styles["control-panel__switch"]}>
+        {/* Disabled accessability switch */}
+        {/* <div className={styles["control-panel__switch"]}>
           <CrtLabel>ACCESSIBILITY</CrtLabel>
           <CrtSwitch
             leftText="On"
             rightText="Off"
             onToggle={accessibilityHandler}
           />
-        </div>
+        </div> */}
         <div className={styles["control-panel__brand"]}>
           <CrtLabel isText={false}>
             <div className={styles["control-panel__image"]}>

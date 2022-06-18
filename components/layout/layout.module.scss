@@ -15,7 +15,7 @@
   &__brand {
     margin: auto;
     margin-bottom: 0;
-    width: fit-content
+    width: fit-content;
   }
 
   &__image {
@@ -48,6 +48,20 @@
       background-position: 50% 0;
       background-size: cover;
       box-shadow: 1px 1px 2rem #000 inset;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .layout {
+    padding: 1.5rem;
+
+    &__screen-frame {
+      padding: 1.5rem;
+    }
+
+    &__secondary {
+      display: none;
     }
   }
 }

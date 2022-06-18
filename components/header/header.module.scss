@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  height: 6rem;
+  padding-top: 1.8rem;
+  flex-direction: row;
+  align-items: center;
+
+  &__right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.arrows {
+  width: 1rem;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1.8rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__item {
+    font-weight: 900;
+    transform: scale(1.5, 1);
+  }
+}

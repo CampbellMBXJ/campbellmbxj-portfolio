@@ -2,7 +2,7 @@
 
 .work-tile {
   width: 100%;
-  margin: 4rem 0;
+  margin: 2rem 0;
   padding: 2rem;
 
   &__link {
@@ -20,5 +20,6 @@
 @media only screen and (min-width: 1050px) {
   .work-tile {
     width: 45%;
+    margin: 4rem 0;
   }
 }

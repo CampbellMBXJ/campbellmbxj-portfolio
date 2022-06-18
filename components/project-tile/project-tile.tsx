@@ -18,7 +18,7 @@ const ProjectTile: FC<ProjectTileProps> = (props) => {
       <h3>{`${props.title}`}</h3>
       {!!props.tagline && <h4 className={cn("secondary-text")}>{props.tagline}</h4>}
       <p className={cn("secondary-text")}>{props.technologies?.join(", ")}</p>
-      <p className={cn(styles["project-tile__link"], "link")}>View more</p>
+      <p className={cn(styles["project-tile__link"], "link")}>View project</p>
     </section>
   );
 };
