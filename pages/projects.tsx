@@ -7,8 +7,9 @@ import cn from "classnames";
 import styles from "./projects.module.scss";
 import CrtCarousel from "../components/crt-carousel/crt-carousel";
 import { useRouter } from "next/router";
+import ProjectModal from '../components/project-modal/project-modal';
 
-interface Project {
+export interface Project {
   linkLocation?: string;
   linkText?: string;
   title: string;
@@ -95,7 +96,7 @@ const projects: Project[] = [
 
 const Projects: Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalBody, setModalBody] = useState<ReactElement | string>();
+  const [currentProject, setCurrentProject] = useState<Project>();
   const router = useRouter();
 
   const openModal = (project: Project) => {
@@ -106,30 +107,6 @@ const Projects: Page = () => {
     // Remove pound anchor from URL;
     router.push("");
   };
-
-  const setModal = useCallback((project: Project) => {
-    const body = (
-      <>
-        {!!project.images && <CrtCarousel images={project.images} />}
-        {project.description}
-        {!!project.linkLocation && !!project.linkText && (
-          <a href={project.linkLocation} target={"_blank"} rel="noreferrer">
-            <span
-              className={cn(
-                styles["projects__link"],
-                "link",
-                "link--dark",
-                "not-selectable"
-              )}
-            >
-              {project.linkText}
-            </span>
-          </a>
-        )}
-      </>
-    );
-    setModalBody(body);
-  }, []);
 
   // Monitors anchors in path to open/close the modal
   useEffect(() => {
@@ -145,10 +122,10 @@ const Projects: Page = () => {
 
     // If the project is found, open the modal
     if (project) {
-      setModal(project);
+      setCurrentProject(project);
       setIsModalOpen(true);
     }
-  }, [router.asPath, setModal]);
+  }, [router.asPath]);
 
   const projectTiles = () => {
     return projects.map((project, i) => {
@@ -162,7 +139,7 @@ const Projects: Page = () => {
     <>
       <div className={styles.projects}>{projectTiles()}</div>
 
-      {isModalOpen && <VhsModal closeModal={closeModal}>{modalBody}</VhsModal>}
+      {isModalOpen && <ProjectModal closeModal={closeModal} project={currentProject!} />}
     </>
   );
 };

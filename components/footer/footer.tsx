@@ -16,7 +16,7 @@ const Footer = (props: FooterProps) => {
         <span className="not-selectable clickable link">GITHUB</span>
       </a>
       <a
-        href="www.linkedin.com/in/campbell-mercer-butcher"
+        href="https://linkedin.com/in/campbell-mercer-butcher"
         target="_blank"
         rel="noreferrer"
       >
