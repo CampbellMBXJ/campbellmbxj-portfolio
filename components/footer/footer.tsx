@@ -8,7 +8,7 @@ type FooterProps = {};
 const Footer = (props: FooterProps) => {
   return (
     <footer className={styles["footer"]}>
-      <Link passHref href="/documents/campbell-mb-resume.pdf">
+      <Link passHref href="/documents/resume.pdf">
         <span
           className={cn(
             styles["footer__item"],

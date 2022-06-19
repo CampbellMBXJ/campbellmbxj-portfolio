@@ -44,8 +44,8 @@ const workExperience: WorkExperience[] = [
             Migrated angular component library and css framework, to align with
             the wider business.
           </li>
-          <li>Partook in AWS cloud migration with CloudFormation IaC.</li>
-          <li> Met with clients, discussing issues and new features.</li>
+          <li>Partook in AWS cloud migration with CloudFormation IaC, increasing reliability.</li>
+          <li>Met with clients, resolving issues and exploring new features.</li>
           <li>Performed releases and provided production support.</li>
           <li>Mentored and onboarded new team members.</li>
         </ul>
