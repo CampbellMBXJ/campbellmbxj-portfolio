@@ -1,13 +1,10 @@
-import { ReactElement, useCallback, useEffect, useState } from "react";
-import ProjectTile from "../components/project-tile/project-tile";
-import VhsModal from "../components/vhs-modal/vhs-modal";
-import { ChannelName } from "../types";
-import { Page } from "./_app";
-import cn from "classnames";
-import styles from "./projects.module.scss";
-import CrtCarousel from "../components/crt-carousel/crt-carousel";
 import { useRouter } from "next/router";
-import ProjectModal from '../components/project-modal/project-modal';
+import { ReactElement, useEffect, useState } from "react";
+import ProjectModal from "../components/project-modal/project-modal";
+import ProjectTile from "../components/project-tile/project-tile";
+import { ChannelName } from "../types";
+import styles from "./projects.module.scss";
+import { Page } from "./_app";
 
 export interface Project {
   linkLocation?: string;
@@ -44,6 +41,8 @@ const projects: Project[] = [
       "/images/projects/my-moola/new-bank-login.png",
       "/images/projects/my-moola/transaction-confirmation.png",
     ],
+    linkLocation: "https://my-moola.campbellmb.com",
+    linkText: "View archived marketing site"
   },
   {
     title: "LogiCraft",
@@ -139,7 +138,9 @@ const Projects: Page = () => {
     <>
       <div className={styles.projects}>{projectTiles()}</div>
 
-      {isModalOpen && <ProjectModal closeModal={closeModal} project={currentProject!} />}
+      {isModalOpen && (
+        <ProjectModal closeModal={closeModal} project={currentProject!} />
+      )}
     </>
   );
 };
