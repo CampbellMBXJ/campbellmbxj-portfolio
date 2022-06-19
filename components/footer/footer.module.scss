@@ -12,5 +12,9 @@
     flex-direction: column;
     height: 10rem;
     width: 15rem;
+
+    &__item {
+      margin: 0.5rem 0;
+    }
   }
 }

@@ -9,21 +9,34 @@ const Footer = (props: FooterProps) => {
   return (
     <footer className={styles["footer"]}>
       <Link passHref href="/documents/campbell-mb-resume.pdf">
-        <span className="not-selectable clickable link">RESUME</span>
+        <span
+          className={cn(
+            styles["footer__item"],
+            "not-selectable clickable link"
+          )}
+        >
+          RESUME
+        </span>
       </Link>
       <a
         href="https://github.com/CampbellMBXJ"
         target="_blank"
         rel="noreferrer"
+        className={styles["footer__item"]}
       >
-        <span className="not-selectable clickable link">GITHUB</span>
+        <span className={cn("not-selectable", "clickable", "link")}>
+          GITHUB
+        </span>
       </a>
       <a
         href="https://linkedin.com/in/campbell-mercer-butcher"
         target="_blank"
         rel="noreferrer"
+        className={styles["footer__item"]}
       >
-        <span className="not-selectable clickable link">LINKED IN</span>
+        <span className={cn("not-selectable", "clickable", "link")}>
+          LINKED IN
+        </span>
       </a>
     </footer>
   );
