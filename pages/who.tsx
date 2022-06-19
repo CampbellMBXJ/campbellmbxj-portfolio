@@ -15,14 +15,14 @@ const Who: Page = () => {
         <p>
           I'm Campbell, a Software Engineer, passionate about all things web. I
           have experience architecting and building highly scalable services on
-          cloud infastructure, and seamless customer first user interfaces
+          cloud infrastructure, and seamless customer-first user interfaces
           (Unlike this app...).
         </p>
         <p>
           I have led teams and projects successfully due to my deep
-          understanding of technology, software proccess, and product thinking.
-          In addition, I have worked direclty with clients and other
-          stakeholders in a proffesional and effiecent manner.
+          understanding of technology, software processes, and product thinking.
+          In addition, I have worked directly with clients and other
+          stakeholders professionally and efficiently.
         </p>
         <p>
           Check out some of my{" "}
@@ -45,7 +45,7 @@ const Who: Page = () => {
             Languages: Typescript, Java, Python
           </li>
           <li className={styles["who__item"]}>
-            Infastructure: AWS, Firebase, Openshift, Terraform, Cloudformation,
+            Infrastructure: AWS, Firebase, Openshift, Terraform, Cloudformation,
             Vercel
           </li>
           <li className={styles["who__item"]}>
