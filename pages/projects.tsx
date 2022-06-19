@@ -1,4 +1,4 @@
-import { ReactElement, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import ProjectTile from "../components/project-tile/project-tile";
 import VhsModal from "../components/vhs-modal/vhs-modal";
 import { ChannelName } from "../types";
@@ -6,6 +6,7 @@ import { Page } from "./_app";
 import cn from "classnames";
 import styles from "./projects.module.scss";
 import CrtCarousel from "../components/crt-carousel/crt-carousel";
+import { useRouter } from "next/router";
 
 interface Project {
   linkLocation?: string;
@@ -55,20 +56,21 @@ const projects: Project[] = [
       "/images/projects/logicraft/uc_hackathon.jpg",
       "/images/projects/logicraft/schematicraft.png",
       "/images/projects/logicraft/schematicraft_2.png",
-    ]
+    ],
   },
   {
     title: "TravelEA",
     tagline: "A travel based social media web application",
     technologies: ["Java", "Scala", "JavaScript", "Play", "Twirl", "MySql"],
-    description: "A travel based planning/social media web application built as part of a team of eight. We were tasked with emulating a scrum environment while completing this project.",
+    description:
+      "A travel based planning/social media web application built as part of a team of eight. We were tasked with emulating a scrum environment while completing this project.",
     images: [
       "/images/projects/travelea/landing.png",
       "/images/projects/travelea/home.png",
       "/images/projects/travelea/people.png",
       "/images/projects/travelea/trips.png",
       "/images/projects/travelea/trip.png",
-    ]
+    ],
   },
   {
     title: "Sm Compiler",
@@ -94,11 +96,18 @@ const projects: Project[] = [
 const Projects: Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalBody, setModalBody] = useState<ReactElement | string>();
+  const router = useRouter();
 
-  const closeModal = () => setIsModalOpen(false);
-  const openModal = () => setIsModalOpen(true);
+  const openModal = (project: Project) => {
+    // Push pound anchor to URL, so that modals can be opened on page load
+    router.push(`#${project.title.replaceAll(" ", "-").toLowerCase()}`);
+  };
+  const closeModal = () => {
+    // Remove pound anchor from URL;
+    router.push("");
+  };
 
-  const tileHandler = (project: Project) => {
+  const setModal = useCallback((project: Project) => {
     const body = (
       <>
         {!!project.images && <CrtCarousel images={project.images} />}
@@ -120,17 +129,31 @@ const Projects: Page = () => {
       </>
     );
     setModalBody(body);
-    openModal();
-  };
+  }, []);
+
+  // Monitors anchors in path to open/close the modal
+  useEffect(() => {
+    const splitPath = router.asPath.split("#");
+    if (splitPath.length <= 1) {
+      setIsModalOpen(false);
+    }
+
+    const anchor = splitPath.pop();
+    const project = projects.find(
+      (project) => project.title.replaceAll(" ", "-").toLowerCase() == anchor
+    );
+
+    // If the project is found, open the modal
+    if (project) {
+      setModal(project);
+      setIsModalOpen(true);
+    }
+  }, [router.asPath, setModal]);
 
   const projectTiles = () => {
     return projects.map((project, i) => {
       return (
-        <ProjectTile
-          key={i}
-          {...project}
-          handler={() => tileHandler(project)}
-        />
+        <ProjectTile key={i} {...project} handler={() => openModal(project)} />
       );
     });
   };
@@ -139,9 +162,7 @@ const Projects: Page = () => {
     <>
       <div className={styles.projects}>{projectTiles()}</div>
 
-      {!!isModalOpen && (
-        <VhsModal closeModal={closeModal}>{modalBody}</VhsModal>
-      )}
+      {isModalOpen && <VhsModal closeModal={closeModal}>{modalBody}</VhsModal>}
     </>
   );
 };

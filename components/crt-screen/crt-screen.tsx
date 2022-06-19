@@ -37,7 +37,7 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
         )}
       >
         <LazyMotion features={domAnimation}>
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence exitBeforeEnter={false}>
             <div className={styles["screen__container"]}>
               <Header isMuted={isMuted} channel={channel} />
               <main className={styles["screen__body"]}>{children}</main>

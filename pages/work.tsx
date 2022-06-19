@@ -3,7 +3,8 @@ import { Page } from "./_app";
 import styles from "./work.module.scss";
 import WorkTile from "../components/work-tile/work-tile";
 import VhsModal from "../components/vhs-modal/vhs-modal";
-import { ReactElement, useState } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 enum WorkTypes {
   FULL_TIME = "Full-time",
@@ -56,7 +57,8 @@ const workExperience: WorkExperience[] = [
     date: "01/19 – 02/21",
     position: WorkTypes.INDEPENDENT,
     technologies: ["Typescript", "Express", "React", "PostgreSQL", "Redis"],
-    description: "Led development of an online residential property exchange. My responsibilities include architectural design decisions, project task board management, and communication with stakeholders. Certain complexities of the application, robust task scheduling, credit card payment, external API integration, and more, have required great technical aptitude.",
+    description:
+      "Led development of an online residential property exchange. My responsibilities include architectural design decisions, project task board management, and communication with stakeholders. Certain complexities of the application, robust task scheduling, credit card payment, external API integration, and more, have required great technical aptitude.",
   },
   {
     company: "Macquarie Group",
@@ -64,7 +66,8 @@ const workExperience: WorkExperience[] = [
     date: "11/19 – 02/20",
     position: WorkTypes.INTERN,
     technologies: ["Java", "Spring boot", "Solace", "ActiveMQ", "Openshift"],
-    description: "Developed and deployed multiple microservices as part of a trading transformation initiative. At the end of the internship, I was the team's leading knowledge source of message queue integration, Bamboo deployment pipelines, Spring cloud configs and more.",
+    description:
+      "Developed and deployed multiple microservices as part of a trading transformation initiative. At the end of the internship, I was the team's leading knowledge source of message queue integration, Bamboo deployment pipelines, Spring cloud configs and more.",
   },
   {
     company: "MetaSwitch",
@@ -72,7 +75,8 @@ const workExperience: WorkExperience[] = [
     date: "11/18 – 02/19",
     position: WorkTypes.INTERN,
     technologies: ["Python", "Java", "Groovy", "InfluxDB", "Grafana", "Docker"],
-    description: "Whilst at MetaSwitch, an international telecommunications software company, I developed software with the purpose of gathering, managing and visualizing telecommunication statistics. Using Grafana, all data could be accessed and displayed clearly and reliably.",
+    description:
+      "Whilst at MetaSwitch, an international telecommunications software company, I developed software with the purpose of gathering, managing and visualizing telecommunication statistics. Using Grafana, all data could be accessed and displayed clearly and reliably.",
   },
   {
     company: "University of Canterbury",
@@ -80,38 +84,60 @@ const workExperience: WorkExperience[] = [
     date: "01/20 – 11/20",
     position: WorkTypes.PART_TIME,
     technologies: ["Java", "Spring boot", "Solace", "ActiveMQ", "Openshift"],
-    description: "Act as a scrum master for development teams in a third-year project course. This required extensive software engineering process knowledge. I additionally tutor and grade the students.",
+    description:
+      "Act as a scrum master for development teams in a third-year project course. This required extensive software engineering process knowledge. I additionally tutor and grade the students.",
   },
 ];
 
 const Work: Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalBody, setModalBody] = useState<ReactElement | string>();
+  const router = useRouter();
 
-  const closeModal = () => setIsModalOpen(false);
-  const openModal = () => setIsModalOpen(true);
-
-  const tileHandler = (body: ReactElement | string) => {
-    setModalBody(body);
-    openModal();
+  const openModal = (work: WorkExperience) => {
+    // Push pound anchor to URL, so that modals can be opened on page load
+    router.push(`#${work.title.replaceAll(" ", "-").toLowerCase()}`);
   };
+  const closeModal = () => {
+    // Remove pound anchor from URL;
+    router.push("");
+  };
+
+  const setModal = useCallback((work: WorkExperience) => {
+    setModalBody(work.description);
+  }, []);
 
   const workTiles = () => {
     return workExperience.map((we, i) => {
-      return (
-        <WorkTile key={i} {...we} handler={() => tileHandler(we.description)} />
-      );
+      return <WorkTile key={i} {...we} handler={() => openModal(we)} />;
     });
   };
+
+  // Monitors anchors in path to open/close the modal
+  useEffect(() => {
+    const splitPath = router.asPath.split("#");
+    if (splitPath.length <= 1) {
+      setIsModalOpen(false);
+    }
+
+    const anchor = splitPath.pop();
+    const work = workExperience.find(
+      (work) => work.title.replaceAll(" ", "-").toLowerCase() == anchor
+    );
+
+    // If the work is found, open the modal
+    if (work) {
+      setModal(work);
+      setIsModalOpen(true);
+    }
+  }, [router.asPath, setModal]);
 
   return (
     <>
       <div className={styles.container}>{workTiles()}</div>
 
       {!!isModalOpen && (
-        <VhsModal closeModal={closeModal}>
-          {modalBody}
-        </VhsModal>
+        <VhsModal closeModal={closeModal}>{modalBody}</VhsModal>
       )}
     </>
   );

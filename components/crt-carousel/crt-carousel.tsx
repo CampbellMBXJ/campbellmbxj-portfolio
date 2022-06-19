@@ -26,6 +26,7 @@ const CrtCarousel = (props: Props) => {
       showArrows={true}
       showStatus={false}
       infiniteLoop={true}
+      showThumbs={false}
       renderArrowPrev={(onClickHandler, hasPrev, label) =>
         hasPrev && (
           <div
