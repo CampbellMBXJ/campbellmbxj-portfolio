@@ -13,10 +13,10 @@ const Who: Page = () => {
         </video>
         <h3>About Me</h3>
         <p>
-          I&apos;m Campbell, a Software Engineer, passionate about all things web. I
-          have experience architecting and building highly scalable services on
-          cloud infrastructure, and seamless customer-first user interfaces
-          (Unlike this app...).
+          I&apos;m Campbell, a Software Engineer, passionate about all things
+          web. I have experience architecting and building highly scalable
+          services on cloud infrastructure, and seamless customer-first user
+          interfaces (Unlike this app...).
         </p>
         <p>
           I have led teams and projects successfully due to my deep
@@ -37,25 +37,6 @@ const Who: Page = () => {
           </Link>
           .
         </p>
-
-        {/* Tecnologies */}
-        <h3 className={styles["who__heading"]}>Technologies:</h3>
-        <ul className={styles["who__list"]}>
-          <li className={styles["who__item"]}>
-            Languages: Typescript, Java, Python
-          </li>
-          <li className={styles["who__item"]}>
-            Infrastructure: AWS, Firebase, Openshift, Terraform, Cloudformation,
-            Vercel
-          </li>
-          <li className={styles["who__item"]}>
-            Backend: Spring Boot, Play, Flask, Express, Nest, tRPC, Socket.io,
-            PSQL, MySQL, Oracle
-          </li>
-          <li className={styles["who__item"]}>
-            Frontend: React (Next, Remix), Angular, Vue.js
-          </li>
-        </ul>
         <p>
           Feel free to contact me via{" "}
           <a
@@ -75,6 +56,25 @@ const Who: Page = () => {
           </a>{" "}
           for a chat.
         </p>
+
+        {/* Tecnologies */}
+        <h3 className={styles["who__heading"]}>Technologies:</h3>
+        <ul className={styles["who__list"]}>
+          <li className={styles["who__item"]}>
+            Languages: Typescript, Java, Python
+          </li>
+          <li className={styles["who__item"]}>
+            Infrastructure: AWS, Firebase, Openshift, Terraform, Cloudformation,
+            Vercel
+          </li>
+          <li className={styles["who__item"]}>
+            Backend: Spring Boot, Play, Flask, Express, Nest, tRPC, Socket.io,
+            PSQL, MySQL, Oracle
+          </li>
+          <li className={styles["who__item"]}>
+            Frontend: React (Next, Remix), Angular, Vue.js
+          </li>
+        </ul>
       </div>
     </>
   );
