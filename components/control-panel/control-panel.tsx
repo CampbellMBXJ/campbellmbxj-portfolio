@@ -1,16 +1,12 @@
-import cn from "classnames";
-import { Howl } from "howler";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext } from "react";
 import { ControlsCtx } from "../../contexts/controls";
 import { ChannelRoute } from "../../types";
 import CrtButton from "../crt-button/crt-button";
 import CrtLabel from "../crt-label/crt-label";
 import RangeSlider from "../crt-range-slider/crt-range-slider";
-import CrtSwitch from "../crt-switch/crt-switch";
 import MetalicPanel from "../metalic-panel/metalic-panel";
-import Speaker from "../speaker/speaker";
 import styles from "./control-panel.module.scss";
 
 type ControlPanelProps = {

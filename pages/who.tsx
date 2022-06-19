@@ -13,7 +13,7 @@ const Who: Page = () => {
         </video>
         <h3>About Me</h3>
         <p>
-          I'm Campbell, a Software Engineer, passionate about all things web. I
+          I&apos;m Campbell, a Software Engineer, passionate about all things web. I
           have experience architecting and building highly scalable services on
           cloud infrastructure, and seamless customer-first user interfaces
           (Unlike this app...).

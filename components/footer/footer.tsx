@@ -1,13 +1,16 @@
 import React from "react";
 import cn from "classnames";
 import styles from "./footer.module.scss";
+import Link from "next/link";
 
 type FooterProps = {};
 
 const Footer = (props: FooterProps) => {
   return (
     <footer className={styles["footer"]}>
-      <span className="not-selectable clickable link">RESUME</span>
+      <Link passHref href="/documents/campbell-mb-resume.pdf">
+        <span className="not-selectable clickable link">RESUME</span>
+      </Link>
       <a
         href="https://github.com/CampbellMBXJ"
         target="_blank"

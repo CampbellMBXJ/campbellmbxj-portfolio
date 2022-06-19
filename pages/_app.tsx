@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <Layout channel={Component.getChannel()}>
+        <Layout channel={Component.getChannel && Component.getChannel()}>
           <Component {...pageProps} />
         </Layout>
       </ControlsProvider>
