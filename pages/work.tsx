@@ -5,15 +5,16 @@ import WorkTile from "../components/work-tile/work-tile";
 import VhsModal from "../components/vhs-modal/vhs-modal";
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import WorkModal from "../components/wok-modal/work-modal";
 
-enum WorkTypes {
+export enum WorkTypes {
   FULL_TIME = "Full-time",
   INTERN = "Internship",
   INDEPENDENT = "Independent",
   PART_TIME = "Part-time",
 }
 
-interface WorkExperience {
+export interface WorkExperience {
   company: string;
   title: string;
   date: string;
@@ -40,8 +41,8 @@ const workExperience: WorkExperience[] = [
             including reactive rewrite.
           </li>
           <li>
-            Migrated angular component library and css framework, aligning with
-            the rest of the business.
+            Migrated angular component library and css framework, to align with
+            the wider business.
           </li>
           <li>Partook in AWS cloud migration with CloudFormation IaC.</li>
           <li> Met with clients, discussing issues and new features.</li>
@@ -85,32 +86,23 @@ const workExperience: WorkExperience[] = [
     position: WorkTypes.PART_TIME,
     technologies: ["Java", "Spring boot", "Solace", "ActiveMQ", "Openshift"],
     description:
-      "Act as a scrum master for development teams in a third-year project course. This required extensive software engineering process knowledge. I additionally tutor and grade the students.",
+      "Acted as a scrum master for development teams in a third-year project course. This required extensive software engineering process knowledge. I additionally tutored and graded the students.",
   },
 ];
 
 const Work: Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalBody, setModalBody] = useState<ReactElement | string>();
+  const [currentWork, setCurrentWork] = useState<WorkExperience>();
   const router = useRouter();
 
   const openModal = (work: WorkExperience) => {
     // Push pound anchor to URL, so that modals can be opened on page load
     router.push(`#${work.title.replaceAll(" ", "-").toLowerCase()}`);
   };
+
   const closeModal = () => {
     // Remove pound anchor from URL;
     router.push("");
-  };
-
-  const setModal = useCallback((work: WorkExperience) => {
-    setModalBody(work.description);
-  }, []);
-
-  const workTiles = () => {
-    return workExperience.map((we, i) => {
-      return <WorkTile key={i} {...we} handler={() => openModal(we)} />;
-    });
   };
 
   // Monitors anchors in path to open/close the modal
@@ -127,17 +119,23 @@ const Work: Page = () => {
 
     // If the work is found, open the modal
     if (work) {
-      setModal(work);
+      setCurrentWork(work);
       setIsModalOpen(true);
     }
-  }, [router.asPath, setModal]);
+  }, [router.asPath]);
+
+  const workTiles = () => {
+    return workExperience.map((we, i) => {
+      return <WorkTile key={i} {...we} handler={() => openModal(we)} />;
+    });
+  };
 
   return (
     <>
       <div className={styles.container}>{workTiles()}</div>
 
       {!!isModalOpen && (
-        <VhsModal closeModal={closeModal}>{modalBody}</VhsModal>
+        <WorkModal work={currentWork!} closeModal={closeModal} />
       )}
     </>
   );
