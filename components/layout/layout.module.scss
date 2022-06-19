@@ -6,6 +6,7 @@
   width: 100vw;
 
   &--wood {
+    background-color: var(--wood); // Makes loading of image less jarring;
     background-image: url("/images/texture_wood.webp");
     background-repeat: no-repeat;
     background-position: 50% 0;
@@ -42,6 +43,7 @@
     &--metalic {
       border-radius: 1rem;
       border: 4px solid var(--gun-metal);
+      background-color: var(--silver-dark);
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("/images/texture_brushed_aluminum.webp");
       background-repeat: no-repeat;
