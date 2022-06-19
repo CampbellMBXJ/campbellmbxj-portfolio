@@ -12,12 +12,12 @@ type ProjectTileProps = {
 const ProjectTile: FC<ProjectTileProps> = (props) => {
   return (
     <section
-      className={cn(styles["project-tile"], props.handler ? "clickable" : null)}
+      className={cn(styles["project-tile"])}
       onClick={props.handler}
     >
-      <h3>{`${props.title}`}</h3>
-      {!!props.tagline && <h4 className={cn("secondary-text")}>{props.tagline}</h4>}
-      <p className={cn("secondary-text")}>{props.technologies?.join(", ")}</p>
+      <h3 className='clickable'>{`${props.title}`}</h3>
+      {!!props.tagline && <h4>{props.tagline}</h4>}
+      <p>{props.technologies?.join(", ")}</p>
       <p className={cn(styles["project-tile__link"], "link")}>View project</p>
     </section>
   );

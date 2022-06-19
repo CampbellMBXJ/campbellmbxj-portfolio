@@ -69,7 +69,6 @@ h3 {
 }
 
 .link {
-  color: var(--white-secondary);
   @include mixins.glitch-text-shadow;
   text-decoration: underline;
 
@@ -89,6 +88,7 @@ h3 {
 }
 
 .clickable {
+  color: var(--white-secondary);
   cursor: pointer;
 }
 
