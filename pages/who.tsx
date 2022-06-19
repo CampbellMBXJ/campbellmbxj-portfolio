@@ -19,12 +19,6 @@ const Who: Page = () => {
           interfaces (Unlike this app...).
         </p>
         <p>
-          I have led teams and projects successfully due to my deep
-          understanding of technology, software processes, and product thinking.
-          In addition, I have worked directly with clients and other
-          stakeholders professionally and efficiently.
-        </p>
-        <p>
           Check out some of my{" "}
           <Link passHref href="/projects">
             <span className={cn("link", "not-selectable")}>Projects</span>
