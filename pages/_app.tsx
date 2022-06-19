@@ -28,7 +28,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
             name="description"
             content="The software portfolio of Campbell Mercer-Butcher"
           />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="shortcut icon" href="/images/favicon.gif" />
         </Head>
 
         <Layout channel={Component.getChannel && Component.getChannel()}>
