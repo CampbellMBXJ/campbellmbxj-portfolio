@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Project } from "../../pages/projects";
 import CrtCarousel from "../crt-carousel/crt-carousel";
-import VhsModal from "../vhs-modal/vhs-modal";
+import CrtModal from "../crt-modal/crt-modal";
 import cn from "classnames";
 import styles from "./project-modal.module.scss";
 
@@ -12,7 +12,7 @@ type ProjectModalProps = {
 
 const ProjectModal: FC<ProjectModalProps> = ({ closeModal, project }) => {
   return (
-    <VhsModal closeModal={closeModal}>
+    <CrtModal closeModal={closeModal}>
       <h3 className={styles["project-modal__heading"]}>{project.title}</h3>
       {!!project.images && <CrtCarousel images={project.images} />}
       {!!project.linkLocation && !!project.linkText && (
@@ -30,7 +30,7 @@ const ProjectModal: FC<ProjectModalProps> = ({ closeModal, project }) => {
         </a>
       )}
       <div className={cn(styles["project-modal__description"])}>{project.description}</div>
-    </VhsModal>
+    </CrtModal>
   );
 };
 

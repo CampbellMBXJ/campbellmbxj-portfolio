@@ -17,8 +17,7 @@ const Header: FC<HeaderProps> = ({ channel, isMuted }) => {
   // Change the current channel by given value
   const changeChannel = (value: number, e: MouseEvent<HTMLElement>) => {
     e.preventDefault();
-
-    const newChannel = (channel + totalChannels + value) % totalChannels;
+    const newChannel = ((channel || 0) + totalChannels + value) % totalChannels;
     router.push(ChannelRoute[newChannel]);
   };
 
@@ -39,7 +38,7 @@ const Header: FC<HeaderProps> = ({ channel, isMuted }) => {
         )}
       </div>
       <div className={styles["header__right"]}>
-        <span className="not-selectable">CHANNEL: {ChannelName[channel]}</span>
+        <span className="not-selectable">CHANNEL: {channel !== undefined ? ChannelName[channel] : "UNKNOWN"}</span>
         <div className={styles["arrows"]}>
           {/* Unicode arrows */}
           <div

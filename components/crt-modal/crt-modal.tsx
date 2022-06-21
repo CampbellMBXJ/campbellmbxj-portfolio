@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from "react";
 import cn from "classnames";
-import styles from "./vhs-modal.module.scss";
+import styles from "./crt-modal.module.scss";
 
 type VhsModalProps = {
   closeModal(): void;
 };
 
-const VhsModal: FC<VhsModalProps> = ({ children, closeModal }) => {
+const CrtModal: FC<VhsModalProps> = ({ children, closeModal }) => {
   const [closeing, setCloseing] = useState(false);
 
   useEffect(() => {
@@ -28,22 +28,22 @@ const VhsModal: FC<VhsModalProps> = ({ children, closeModal }) => {
   };
 
   return (
-    <div className={styles["vhs-modal"]} onClick={() => animateClose()}>
+    <div className={styles["crt-modal"]} onClick={() => animateClose()}>
       <div
         className={cn(
-          styles["vhs-modal__modal"],
-          closeing && styles["vhs-modal__modal--close"]
+          styles["crt-modal__modal"],
+          closeing && styles["crt-modal__modal--close"]
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        <header className={styles["vhs-modal__header"]}>
+        <header className={styles["crt-modal__header"]}>
           <span>1024 x 768 \ 30hz</span>
           <div className={styles["close-btn"]} onClick={() => animateClose()}>
             <span className={cn(styles["close-btn__cross"], "not-selectable")}>+</span>
           </div>
         </header>
-        <div className={styles["vhs-modal__body"]}>{children}</div>
-        <footer className={styles["vhs-modal__footer"]}>
+        <div className={styles["crt-modal__body"]}>{children}</div>
+        <footer className={styles["crt-modal__footer"]}>
           PRESS [ESC] TO CLOSE
         </footer>
       </div>
@@ -51,4 +51,4 @@ const VhsModal: FC<VhsModalProps> = ({ children, closeModal }) => {
   );
 };
 
-export default VhsModal;
+export default CrtModal;

@@ -2,7 +2,7 @@ import { ChannelName } from "../types";
 import { Page } from "./_app";
 import styles from "./work.module.scss";
 import WorkTile from "../components/work-tile/work-tile";
-import VhsModal from "../components/vhs-modal/vhs-modal";
+import CrtModal from "../components/crt-modal/crt-modal";
 import { ReactElement, useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import WorkModal from "../components/wok-modal/work-modal";
