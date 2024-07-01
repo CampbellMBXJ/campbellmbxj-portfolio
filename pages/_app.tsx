@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           <link rel="shortcut icon" href="/images/favicon.gif" />
         </Head>
 
-        <Layout channel={Component.getChannel && Component.getChannel()}>
+        <Layout channel={Component.getChannel()}>
           <Component {...pageProps} />
         </Layout>
       </ControlsProvider>

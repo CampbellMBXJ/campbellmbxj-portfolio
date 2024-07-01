@@ -1,5 +1,5 @@
-import { FC, useEffect, useState } from "react";
 import cn from "classnames";
+import { FC, useCallback, useEffect, useState } from "react";
 import styles from "./crt-modal.module.scss";
 
 type VhsModalProps = {
@@ -9,6 +9,14 @@ type VhsModalProps = {
 const CrtModal: FC<VhsModalProps> = ({ children, closeModal }) => {
   const [closeing, setCloseing] = useState(false);
 
+  // Delays closeing modal until after the animation has completed
+  const animateClose = useCallback(() => {
+    if (!closeing) {
+      setCloseing(true);
+      setTimeout(closeModal, 1000);
+    }
+  }, [closeModal, closeing]);
+
   useEffect(() => {
     const close = (ev: KeyboardEvent) => {
       if (ev.key === "Escape") {
@@ -17,15 +25,7 @@ const CrtModal: FC<VhsModalProps> = ({ children, closeModal }) => {
     };
     window.addEventListener("keydown", close);
     return () => window.removeEventListener("keydown", close);
-  }, []);
-
-  // Delays closeing modal until after the animation has completed
-  const animateClose = () => {
-    if (!closeing) {
-      setCloseing(true);
-      setTimeout(closeModal, 1000);
-    }
-  };
+  }, [animateClose]);
 
   return (
     <div className={styles["crt-modal"]} onClick={() => animateClose()}>
@@ -39,7 +39,9 @@ const CrtModal: FC<VhsModalProps> = ({ children, closeModal }) => {
         <header className={styles["crt-modal__header"]}>
           <span>1024 x 768 \ 30hz</span>
           <div className={styles["close-btn"]} onClick={() => animateClose()}>
-            <span className={cn(styles["close-btn__cross"], "not-selectable")}>+</span>
+            <span className={cn(styles["close-btn__cross"], "not-selectable")}>
+              +
+            </span>
           </div>
         </header>
         <div className={styles["crt-modal__body"]}>{children}</div>

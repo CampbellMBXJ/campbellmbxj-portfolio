@@ -23,8 +23,6 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
     router.push(ChannelRoute[newChannel]);
   };
 
-  // const accessibilityHandler = (value: boolean) => {};
-
   return (
     <MetalicPanel>
       <div className={styles["control-panel__btn-container"]}>
@@ -42,15 +40,6 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
         />
       </div>
       <div className={styles["control-panel__branding-row"]}>
-        {/* Disabled accessability switch */}
-        {/* <div className={styles["control-panel__switch"]}>
-          <CrtLabel>ACCESSIBILITY</CrtLabel>
-          <CrtSwitch
-            leftText="On"
-            rightText="Off"
-            onToggle={accessibilityHandler}
-          />
-        </div> */}
         <div className={styles["control-panel__brand"]}>
           <CrtLabel isText={false}>
             <div className={styles["control-panel__image"]}>
