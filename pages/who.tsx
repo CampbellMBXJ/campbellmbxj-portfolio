@@ -58,12 +58,10 @@ const Who: Page = () => {
             Languages: Typescript, Java, Python
           </li>
           <li className={styles["who__item"]}>
-            Infrastructure: AWS, Firebase, Openshift, Terraform, Cloudformation,
-            Vercel
+            Infrastructure: AWS, Terraform, Cloudformation, Vercel
           </li>
           <li className={styles["who__item"]}>
-            Backend: Spring Boot, Play, Flask, Express, Nest, tRPC, Socket.io,
-            PSQL, MySQL, Oracle
+            Backend: Express, NestJS, Spring Boot, Flask, tRPC, Socket.io
           </li>
           <li className={styles["who__item"]}>
             Frontend: React (Next, Remix), Angular, Vue.js
