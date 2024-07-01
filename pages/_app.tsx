@@ -11,7 +11,7 @@ import ControlsProvider from "../contexts/controls";
 type GetChannel = () => number;
 
 export type Page<P = {}, IP = P> = NextPage<P, IP> & {
-  getChannel: GetChannel;
+  getChannel?: GetChannel;
 };
 
 type MyAppProps<P = {}> = AppProps<P> & {
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     <div>
       <ControlsProvider>
         <Head>
-          <title>CampbellMBXJ | Software Engineer</title>
+          <title>CampbellMBXJ | Senior Software Engineer</title>
           <meta
             name="description"
             content="The software portfolio of Campbell Mercer-Butcher"
@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: MyAppProps) {
           <link rel="shortcut icon" href="/images/favicon.gif" />
         </Head>
 
-        <Layout channel={Component.getChannel()}>
+        <Layout channel={Component.getChannel?.() ?? 0}>
           <Component {...pageProps} />
         </Layout>
       </ControlsProvider>
