@@ -119,10 +119,16 @@ test("direct routes, media, resume and responsive layout", async ({ page, reques
     expect((await response.body()).length).toBeGreaterThan(0);
   }
   await page.goto("/who");
-  // WebKit pauses autoplay video when it is outside the visible viewport.
-  await page.locator("video").scrollIntoViewIfNeeded();
-  await expect.poll(() => page.locator("video").evaluate((video: HTMLVideoElement) => video.readyState)).toBeGreaterThanOrEqual(2);
-  await expect.poll(() => page.locator("video").evaluate((video: HTMLVideoElement) => video.currentTime)).toBeGreaterThan(0);
+  const video = page.locator("video");
+  await video.scrollIntoViewIfNeeded();
+  await expect(video).toHaveJSProperty("autoplay", true);
+  await expect(video).toHaveJSProperty("muted", true);
+  await expect(video).toHaveAttribute("playsinline", "");
+  await expect.poll(() => video.evaluate((node: HTMLVideoElement) => node.readyState)).toBeGreaterThanOrEqual(2);
+  // Autoplay policy varies in headless WebKit. Verify decoding/playback explicitly
+  // after checking the autoplay configuration, rather than relying on its timing.
+  await video.evaluate((node: HTMLVideoElement) => node.play());
+  await expect.poll(() => video.evaluate((node: HTMLVideoElement) => node.currentTime)).toBeGreaterThan(0);
 });
 
 test("404 offers a working route home", async ({ page }) => {
