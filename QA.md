@@ -1,4 +1,55 @@
-# Dependency upgrade QA — 2026-09-18
+# QA — 2026-09-18
+
+## Architectural rework
+
+Reorganized application code into route entry points, project/work features,
+the persistent TV shell, shared UI, routing utilities, and global styles under
+`src/`. See [ARCHITECTURE.md](ARCHITECTURE.md) for ownership and extension rules.
+pnpm 12.4.2 and TypeScript 7.0.2 remain in use; dependency versions and the lockfile
+are unchanged by this refactor.
+
+| Check | Result |
+| --- | --- |
+| `pnpm install --frozen-lockfile` | Passed |
+| `pnpm exec tsc --version` | 7.0.2 |
+| `pnpm lint` | Passed, zero warnings |
+| `pnpm typecheck` | Passed |
+| `pnpm build` | Passed, all routes prerendered |
+| `pnpm test:e2e --workers=2` | 39 passed, 1 intentionally skipped |
+| `pnpm audit --json` | Zero reported vulnerabilities |
+| Import-boundary probes | All six representative forbidden imports rejected by ESLint |
+| Extracted project/work content | Exact match with the previous commit, excluding added explicit slugs |
+| Development smoke checks | Passed in Chromium and WebKit, with no runtime/console errors |
+| Audio instrumentation | Decoded audio starts on active transitions, remains suppressed during muted/powered-off transitions, resumes after power-on |
+| `git diff --check` | Passed |
+
+The production suite runs the original regression cases plus checks for all 11
+published modal URLs, preserved query strings, keyboard channel/carousel
+controls, focus trapping/restoration, inert background controls, backdrop
+dismissal, and cancellation of an old modal's delayed close after the selection
+changes. It runs in Chromium, Firefox, desktop WebKit, and iPhone-sized WebKit.
+The one skipped case exercises the TV control panel that is intentionally hidden
+on mobile; all desktop engines exercise it.
+
+Development checks cover the four main routes, both modal deep links, Strict
+Mode cleanup, focus restoration, and subsequent client-side navigation. Audio
+checks instrument Web Audio source starts in Chromium rather than assessing
+sound by ear.
+
+Captured the pre-refactor and final production app at 1440×1000 and 390×844 on
+the four main routes, both modal views, and the 404 page. All 228 measured
+elements across 14 views match within 0.5px. Inspected desktop/mobile screenshots
+of the home and modal layouts. Animated CRT noise varies between captures, so
+this is a layout comparison, not a pixel-identical assertion.
+
+Intentional behavior improvements include native keyboard-operable controls,
+visible focus, modal focus isolation/restoration, and an explicit UNKNOWN label
+on the 404 channel. Existing route paths, modal hashes, content, and TV styling
+are preserved. No regressions were detected in the tested workflows. Physical
+mobile devices, subjective audio quality, and screen-reader interaction were
+not tested; the video autoplay-policy limitation below still applies.
+
+## Earlier dependency upgrade and pnpm migration
 
 All retained direct dependencies were checked against the npm registry's stable
 `latest` tags. The original dependency upgrade refreshed the Yarn lockfile within
@@ -10,7 +61,7 @@ Major upgrades include Next.js 16.3.5, React 19.3.0, Framer Motion 13.4.0,
 ESLint 10.11.0, Sass 1.104.1, and the TypeScript 7.0.2 compiler. See README.md
 for the TypeScript compiler-API alias and ESLint compatibility configuration.
 
-## Results
+### Results
 
 | Check | Result |
 | --- | --- |
@@ -38,7 +89,7 @@ Video checks assert the autoplay, muted, and inline-playback configuration and
 explicitly start playback to verify decoding. Automatic startup timing is not
 asserted because headless WebKit applied its autoplay policy inconsistently.
 
-## Visual comparison
+### Visual comparison
 
 Captured the original and upgraded production app at 1440×1000 and 390×844 on
 the four main routes, project/work modal deep links, and the 404 page. Compared
@@ -51,7 +102,7 @@ CRT noise varies between captures, so this was not a pixel-identical comparison.
 No functional regressions were detected in the tested workflows. These checks
 use browser emulation, not physical mobile devices or subjective audio playback.
 
-## Compatibility notes
+### Compatibility notes
 
 - Node.js 24 or newer is required; `.nvmrc` selects Node 24.
 - Next's older ESLint plugin peer ranges still produce installation warnings;

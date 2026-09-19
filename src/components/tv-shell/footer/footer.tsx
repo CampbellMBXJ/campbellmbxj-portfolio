@@ -1,0 +1,40 @@
+import cn from "classnames";
+import styles from "./footer.module.scss";
+
+const Footer = () => {
+  return (
+    <footer className={styles["footer"]}>
+      <a
+        href="/documents/resume.pdf"
+        className={cn(
+          styles["footer__item"],
+          "not-selectable clickable link"
+        )}
+      >
+        RESUME
+      </a>
+      <a
+        href="https://github.com/CampbellMBXJ"
+        target="_blank"
+        rel="noreferrer"
+        className={styles["footer__item"]}
+      >
+        <span className={cn("not-selectable", "clickable", "link")}>
+          GITHUB
+        </span>
+      </a>
+      <a
+        href="https://linkedin.com/in/campbell-mercer-butcher"
+        target="_blank"
+        rel="noreferrer"
+        className={styles["footer__item"]}
+      >
+        <span className={cn("not-selectable", "clickable", "link")}>
+          LINKED IN
+        </span>
+      </a>
+    </footer>
+  );
+};
+
+export default Footer;

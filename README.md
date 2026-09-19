@@ -2,6 +2,9 @@
 
 My personal portfolio / digital resume. A unique application that is themed after a 60's era Television.
 
+See [ARCHITECTURE.md](ARCHITECTURE.md) for folder ownership, component/page
+boundaries, routing, state, and guidance for extending the application.
+
 ![Screenshot of portfolio home](./public/images/portfolio-home.png)  
 ![Screenshot of portfolio project](./public/images/portfolio-projects.png)
 

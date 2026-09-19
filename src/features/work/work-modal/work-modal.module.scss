@@ -1,0 +1,13 @@
+.work-modal {
+  &__sub-heading {
+    margin-bottom: 4rem;
+  }
+}
+.work-modal__description ul {
+  list-style-type: square;
+  list-style-position: outside;
+  padding-left: 4rem;
+  padding-top: 1rem;
+
+  li { padding-top: 0.8rem; }
+}

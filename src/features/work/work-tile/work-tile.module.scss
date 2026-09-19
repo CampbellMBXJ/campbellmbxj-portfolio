@@ -1,0 +1,26 @@
+@use '../../../styles/mixins.scss';
+
+.work-tile {
+  width: 100%;
+  margin: 2rem 0;
+  padding: 2rem;
+  cursor: pointer;
+
+  &__link {
+    margin: 0;
+    margin-left: auto;
+    width: fit-content;
+  }
+
+  @include mixins.glitch-borders(
+    $border-size: 4px,
+    $border-color: #cec6cb
+  );
+}
+
+@media only screen and (min-width: 1050px) {
+  .work-tile {
+    width: 45%;
+    margin: 4rem 0;
+  }
+}
