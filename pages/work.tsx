@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
+import { useUrlHash } from "../hooks/use-url-hash";
 import WorkModal from "../components/wok-modal/work-modal";
 import WorkTile from "../components/work-tile/work-tile";
 import { ChannelName } from "../types";
@@ -23,9 +24,11 @@ export interface WorkExperience {
 }
 
 const Work: Page = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentWork, setCurrentWork] = useState<WorkExperience>();
   const router = useRouter();
+  const hash = useUrlHash();
+  const currentWork = workExperience.find(
+    (work) => work.title.replaceAll(" ", "-").toLowerCase() === hash
+  );
 
   const openModal = (work: WorkExperience) => {
     // Push pound anchor to URL, so that modals can be opened on page load
@@ -37,25 +40,6 @@ const Work: Page = () => {
     router.push("");
   };
 
-  // Monitors anchors in path to open/close the modal
-  useEffect(() => {
-    const splitPath = router.asPath.split("#");
-    if (splitPath.length <= 1) {
-      setIsModalOpen(false);
-    }
-
-    const anchor = splitPath.pop();
-    const work = workExperience.find(
-      (work) => work.title.replaceAll(" ", "-").toLowerCase() == anchor
-    );
-
-    // If the work is found, open the modal
-    if (work) {
-      setCurrentWork(work);
-      setIsModalOpen(true);
-    }
-  }, [router.asPath]);
-
   const workTiles = () => {
     return workExperience.map((we, i) => {
       return <WorkTile key={i} {...we} handler={() => openModal(we)} />;
@@ -66,8 +50,8 @@ const Work: Page = () => {
     <>
       <div className={styles.container}>{workTiles()}</div>
 
-      {!!isModalOpen && (
-        <WorkModal work={currentWork!} closeModal={closeModal} />
+      {currentWork && (
+        <WorkModal key={currentWork.title} work={currentWork} closeModal={closeModal} />
       )}
     </>
   );

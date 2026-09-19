@@ -8,7 +8,7 @@ const Who: Page = () => {
   return (
     <>
       <div className={styles["who"]}>
-        <video autoPlay muted loop className={styles["video"]}>
+        <video autoPlay muted loop playsInline className={styles["video"]}>
           <source src="/images/headshot.webm" type="video/webm" />
         </video>
         <h3>About Me</h3>
@@ -20,11 +20,11 @@ const Who: Page = () => {
         </p>
         <p>
           Check out some of my{" "}
-          <Link passHref href="/projects">
+          <Link href="/projects">
             <span className={cn("link", "not-selectable")}>Projects</span>
           </Link>{" "}
           and{" "}
-          <Link href="/work" passHref>
+          <Link href="/work">
             <span className={cn("link", "not-selectable")}>
               Work experience
             </span>

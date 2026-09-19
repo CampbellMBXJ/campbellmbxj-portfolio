@@ -1,8 +1,8 @@
 import cn from "classnames";
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import styles from "./metalic-panel.module.scss";
 
-const MetalicPanel: FC = ({ children }) => {
+const MetalicPanel: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className={styles["metalic-panel"]}>
       {children}

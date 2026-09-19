@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement } from "react";
+import { useUrlHash } from "../hooks/use-url-hash";
 import ProjectModal from "../components/project-modal/project-modal";
 import ProjectTile from "../components/project-tile/project-tile";
 import { ChannelName } from "../types";
@@ -94,9 +95,11 @@ const projects: Project[] = [
 ];
 
 const Projects: Page = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentProject, setCurrentProject] = useState<Project>();
   const router = useRouter();
+  const hash = useUrlHash();
+  const currentProject = projects.find(
+    (project) => project.title.replaceAll(" ", "-").toLowerCase() === hash
+  );
 
   const openModal = (project: Project) => {
     // Push pound anchor to URL, so that modals can be opened on page load
@@ -106,25 +109,6 @@ const Projects: Page = () => {
     // Remove pound anchor from URL;
     router.push("");
   };
-
-  // Monitors anchors in path to open/close the modal
-  useEffect(() => {
-    const splitPath = router.asPath.split("#");
-    if (splitPath.length <= 1) {
-      setIsModalOpen(false);
-    }
-
-    const anchor = splitPath.pop();
-    const project = projects.find(
-      (project) => project.title.replaceAll(" ", "-").toLowerCase() == anchor
-    );
-
-    // If the project is found, open the modal
-    if (project) {
-      setCurrentProject(project);
-      setIsModalOpen(true);
-    }
-  }, [router.asPath]);
 
   const projectTiles = () => {
     return projects.map((project, i) => {
@@ -138,8 +122,8 @@ const Projects: Page = () => {
     <>
       <div className={styles.projects}>{projectTiles()}</div>
 
-      {isModalOpen && (
-        <ProjectModal closeModal={closeModal} project={currentProject!} />
+      {currentProject && (
+        <ProjectModal key={currentProject.title} closeModal={closeModal} project={currentProject} />
       )}
     </>
   );

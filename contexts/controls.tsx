@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useState } from "react";
+import { createContext, FC, PropsWithChildren, useState } from "react";
 
 type ControlsCtxType = {
   isMuted: boolean;
@@ -9,7 +9,7 @@ type ControlsCtxType = {
 
 export const ControlsCtx = createContext<ControlsCtxType>(null as any);
 
-const ControlsProvider: FC<ReactNode> = ({ children }) => {
+const ControlsProvider: FC<PropsWithChildren> = ({ children }) => {
   const [isMuted, setIsMuted] = useState(false);
   const [isPowered, setIsPowered] = useState(true);
 

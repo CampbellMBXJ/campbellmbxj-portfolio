@@ -9,7 +9,7 @@ const Home: Page = () => {
     <div className={styles.hero}>
       <h1>CAMPBELL MERCER</h1>
       <h3>SOFTWARE ENGINEER</h3>
-      <Link passHref href="/who">
+      <Link href="/who">
         <h4 className={cn(styles["hero__link"], "link", "not-selectable")}>
           ABOUT ME
         </h4>

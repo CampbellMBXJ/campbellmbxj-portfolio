@@ -1,8 +1,6 @@
 import cn from "classnames";
-import Image from "next/image";
-import { FC } from "react";
+import { FC, PropsWithChildren } from "react";
 import ControlPanel from "../control-panel/control-panel";
-import CrtLabel from "../crt-label/crt-label";
 import CrtScreen from "../crt-screen/crt-screen";
 import Speaker from "../speaker/speaker";
 import styles from "./layout.module.scss";
@@ -11,7 +9,7 @@ type LayoutProps = {
   channel: number;
 };
 
-const Layout: FC<LayoutProps> = ({ channel, children }) => {
+const Layout: FC<PropsWithChildren<LayoutProps>> = ({ channel, children }) => {
   return (
     <div className={cn(styles["layout"], styles["layout--wood"])}>
       <div

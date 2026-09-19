@@ -1,7 +1,7 @@
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
 import { Howl } from "howler";
 import { useRouter } from "next/router";
-import { FC, useContext } from "react";
+import { FC, PropsWithChildren, useContext } from "react";
 import { ControlsCtx } from "../../contexts/controls";
 import Footer from "../footer/footer";
 import cn from "classnames";
@@ -18,7 +18,7 @@ const staticFX = new Howl({
   volume: 0.03,
 });
 
-const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
+const CrtScreen: FC<PropsWithChildren<CrtScreenProps>> = ({ children, channel }) => {
   const router = useRouter();
   const { isMuted, isPowered } = useContext(ControlsCtx);
 
@@ -37,8 +37,8 @@ const CrtScreen: FC<CrtScreenProps> = ({ children, channel }) => {
         )}
       >
         <LazyMotion features={domAnimation}>
-          <AnimatePresence exitBeforeEnter={false}>
-            <div className={styles["screen__container"]}>
+          <AnimatePresence mode="sync">
+            <div key="content" className={styles["screen__container"]}>
               <Header isMuted={isMuted} channel={channel} />
               <main className={styles["screen__body"]}>{children}</main>
               <Footer />

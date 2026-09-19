@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "sass:math";
+
 // Cross-Browser Compatible Range Inputs based on
 // https://github.com/darlanrod/input-range-sass
 
@@ -24,11 +27,11 @@ $track-border-color: var(--white-primary) !default;
 $track-radius: 0.2rem !default;
 $contrast: 5% !default;
 
-$ie-bottom-track-color: darken($track-color, $contrast) !default;
+$ie-bottom-track-color: color.adjust($track-color, $lightness: -$contrast) !default;
 
 @mixin shadow($shadow-size, $shadow-blur, $shadow-color) {
   box-shadow: $shadow-size $shadow-size $shadow-blur $shadow-color,
-    0 0 $shadow-size lighten($shadow-color, 5%);
+    0 0 $shadow-size color.adjust($shadow-color, $lightness: 5%);
 }
 
 @mixin track {
@@ -60,7 +63,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
 [type="range"] {
   -webkit-appearance: none;
   background: transparent;
-  margin: $thumb-height / 2 0;
+  margin: math.div($thumb-height, 2) 0;
   width: $track-width;
 
   &::-moz-focus-outer {
@@ -75,7 +78,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     outline: 0;
 
     &::-webkit-slider-runnable-track {
-      background: lighten($track-color, $contrast);
+      background: color.adjust($track-color, $lightness: $contrast);
     }
 
     &::-ms-fill-lower {
@@ -83,7 +86,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     }
 
     &::-ms-fill-upper {
-      background: lighten($track-color, $contrast);
+      background: color.adjust($track-color, $lightness: $contrast);
     }
   }
 
@@ -103,7 +106,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     @include thumb;
     -webkit-appearance: none;
     margin-top: (
-      (-$track-border-width * 2 + $track-height) / 2 - $thumb-height / 2
+      math.div(-$track-border-width * 2 + $track-height, 2) - math.div($thumb-height, 2)
     );
   }
 
@@ -117,7 +120,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     background: $track-color;
     border: $track-border-width solid $track-border-color;
     border-radius: $track-radius;
-    height: $track-height / 2;
+    height: math.div($track-height, 2);
   }
 
   &::-moz-range-thumb {
@@ -128,7 +131,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
     @include track;
     background: transparent;
     border-color: transparent;
-    border-width: ($thumb-height / 2) 0;
+    border-width: (math.div($thumb-height, 2)) 0;
     color: transparent;
   }
 
@@ -156,7 +159,7 @@ $ie-bottom-track-color: darken($track-color, $contrast) !default;
 
   &::-ms-thumb {
     @include thumb;
-    margin-top: $track-height / 4;
+    margin-top: math.div($track-height, 4);
   }
 
   &:disabled {

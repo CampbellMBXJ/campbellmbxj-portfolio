@@ -1,12 +1,12 @@
 import cn from "classnames";
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useCallback, useEffect, useState } from "react";
 import styles from "./crt-modal.module.scss";
 
 type VhsModalProps = {
   closeModal(): void;
 };
 
-const CrtModal: FC<VhsModalProps> = ({ children, closeModal }) => {
+const CrtModal: FC<PropsWithChildren<VhsModalProps>> = ({ children, closeModal }) => {
   const [closeing, setCloseing] = useState(false);
 
   // Delays closeing modal until after the animation has completed

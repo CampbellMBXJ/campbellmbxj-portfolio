@@ -14,8 +14,9 @@ const CrtCarousel = (props: Props) => {
         <Image
           src={image}
           alt="Relevent image"
-          layout="fill"
-          objectFit="contain"
+          fill
+          sizes="(max-width: 700px) 90vw, 600px"
+          style={{ objectFit: "contain" }}
         />
       </div>
     ));
@@ -61,6 +62,7 @@ const CrtCarousel = (props: Props) => {
         if (isSelected) {
           return (
             <div
+              key={index}
               className={cn(
                 styles["carousel__indicator"],
                 styles["carousel__indicator--active"],

@@ -8,7 +8,7 @@ const FourOhFour = (props: Props) => {
     <div>
       <h2>404 - CHANNEL NOT FOUND</h2>
       <p>
-        RETURN TO <Link href={'/'} passHref><span className='link clickable'>CHANNEL 01</span></Link>
+        RETURN TO <Link href={'/'}><span className='link clickable'>CHANNEL 01</span></Link>
       </p>
     </div>
   );

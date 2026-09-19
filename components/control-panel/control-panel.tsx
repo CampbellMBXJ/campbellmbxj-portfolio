@@ -46,7 +46,8 @@ const ControlPanel: FC<ControlPanelProps> = ({ channel }) => {
               <Image
                 src={"/images/cmb-logo.svg"}
                 alt={"Retro television logo"}
-                layout="fill"
+                fill
+                sizes="100px"
               />
             </div>
           </CrtLabel>

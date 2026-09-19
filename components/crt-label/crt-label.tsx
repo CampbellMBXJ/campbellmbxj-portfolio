@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import styles from "./crt-label.module.scss";
 import cn from "classnames";
 
@@ -6,7 +6,7 @@ type Props = {
   isText?: boolean;
 };
 
-const CrtLabel: FC<Props> = (props) => {
+const CrtLabel: FC<PropsWithChildren<Props>> = (props) => {
   return (
     <div
       className={cn(
