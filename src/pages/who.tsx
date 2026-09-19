@@ -39,7 +39,7 @@ const Who = () => {
           </a>{" "}
           or{" "}
           <a
-            href="www.linkedin.com/in/campbell-mercer-butcher"
+            href="https://www.linkedin.com/in/campbell-mercer-butcher"
             target="_blank"
             rel="noreferrer"
             className={cn("link", "not-selectable")}
@@ -69,6 +69,5 @@ const Who = () => {
     </>
   );
 };
-
 
 export default Who;

@@ -15,15 +15,28 @@ export default function WorkTile({ work, href, onOpen }: Props) {
       className={styles["work-tile"]}
       aria-label={`View ${work.title}`}
       onClick={(event) => {
-        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        if (
+          event.button !== 0 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        )
+          return;
         event.preventDefault();
         event.currentTarget.focus({ preventScroll: true });
         onOpen();
       }}
     >
-      <h3 className="clickable">{work.company} - {work.title}</h3>
-      <h4>{work.position}, {work.date}</h4>
-      <p>{work.technologies?.join(", ")}</p>
+      <div className={styles["work-tile__meta"]}>
+        <span>{work.date}</span>
+        <span>{work.position}</span>
+      </div>
+      <h3>{work.company}</h3>
+      <h4>{work.title}</h4>
+      <p className={styles["work-tile__technologies"]}>
+        {work.technologies?.join(" · ")}
+      </p>
       <p className={cn(styles["work-tile__link"], "link")}>Read more</p>
     </a>
   );

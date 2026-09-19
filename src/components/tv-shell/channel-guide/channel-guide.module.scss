@@ -1,0 +1,59 @@
+.guide {
+  display: grid;
+  gap: 0.8rem;
+  &__channel {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.8rem;
+    border: 1px solid #45656a;
+    background: #102329;
+    &:hover,
+    &:focus-visible {
+      background: #254449;
+    }
+    &[aria-current="page"] {
+      border-color: var(--phosphor);
+    }
+  }
+  &__number {
+    font-size: 3.2rem;
+    color: var(--vhs-blue);
+  }
+  &__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    strong {
+      font-weight: 400;
+      font-size: 2rem;
+    }
+    small {
+      color: var(--screen-muted);
+      font-size: 1.4rem;
+    }
+  }
+  &__status {
+    margin-left: auto;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    color: var(--phosphor);
+  }
+}
+@media (max-width: 700px) {
+  .guide {
+    &__channel {
+      gap: 1rem;
+      padding: 1.2rem 0.8rem;
+    }
+    &__number {
+      font-size: 2.5rem;
+    }
+    &__copy small {
+      font-size: 1.2rem;
+    }
+    &__status {
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,13 +1,23 @@
 .work-modal {
   &__sub-heading {
-    margin-bottom: 4rem;
+    color: var(--vhs-blue);
+    margin: 0 0 2.4rem;
+    font-size: 1.8rem;
+    line-height: 1.4;
   }
-}
-.work-modal__description ul {
-  list-style-type: square;
-  list-style-position: outside;
-  padding-left: 4rem;
-  padding-top: 1rem;
-
-  li { padding-top: 0.8rem; }
+  &__description {
+    max-width: 72rem;
+    line-height: 1.5;
+  }
+  &__description ul {
+    list-style-type: square;
+    padding-left: 2.2rem;
+    padding-top: 1.2rem;
+  }
+  &__description li {
+    padding: 0.6rem 0;
+    &::marker {
+      color: var(--phosphor);
+    }
+  }
 }

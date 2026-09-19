@@ -1,5 +1,5 @@
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
-import type { FC, PropsWithChildren } from "react";
+import { useEffect, useRef, type FC, type PropsWithChildren } from "react";
 import { useTvControls } from "../controls-context";
 import { useTvAudio } from "../use-tv-audio";
 import type { Channel } from "../channels";
@@ -16,22 +16,44 @@ type TvScreenProps = {
   onPrevious(): void;
 };
 
-const TvScreen: FC<PropsWithChildren<TvScreenProps>> = ({ children, channel, transitionKey, onNext, onPrevious }) => {
+const TvScreen: FC<PropsWithChildren<TvScreenProps>> = ({
+  children,
+  channel,
+  transitionKey,
+  onNext,
+  onPrevious,
+}) => {
   const { isMuted, isPowered } = useTvControls();
   const playTransitionSound = useTvAudio(isMuted, isPowered);
+  const content = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Channels share this scroll container. Start a newly selected channel at
+    // the top without moving the page when only a detail hash changes.
+    content.current?.scrollTo({ top: 0 });
+  }, [transitionKey]);
 
   return (
     <div className={styles["screen"]}>
       <div
         className={cn(
           styles["screen__animated"],
-          !isPowered && styles["screen__animated--off"]
+          !isPowered && styles["screen__animated--off"],
         )}
       >
         <LazyMotion features={domAnimation}>
           <AnimatePresence mode="sync">
-            <div key="content" className={styles["screen__container"]}>
-              <ChannelHeader isMuted={isMuted} channel={channel} onNext={onNext} onPrevious={onPrevious} />
+            <div
+              ref={content}
+              key="content"
+              className={styles["screen__container"]}
+            >
+              <ChannelHeader
+                isMuted={isMuted}
+                channel={channel}
+                onNext={onNext}
+                onPrevious={onPrevious}
+              />
               <main className={styles["screen__body"]}>{children}</main>
               <Footer />
             </div>

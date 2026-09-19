@@ -61,7 +61,10 @@ leave the page visible without a modal. Opening/closing preserves query strings.
 state, and the closing animation. It stays inside the TV's transformed frame to
 preserve positioning. It cancels delayed close callbacks when unmounted, so an
 old selection cannot dismiss a newer one. Feature modals supply accessible
-heading IDs and content; they do not implement modal mechanics.
+heading IDs, titles, and content; they do not implement modal mechanics. The TV
+shell's channel guide uses the same modal and remains outside the header's DOM
+element so its own header/footer have valid structure. Screen stacking rules keep
+both kinds of panel above the sticky channel header.
 
 ## Styling and extension
 

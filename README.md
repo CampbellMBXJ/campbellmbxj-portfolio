@@ -4,6 +4,8 @@ My personal portfolio / digital resume. A unique application that is themed afte
 
 See [ARCHITECTURE.md](ARCHITECTURE.md) for folder ownership, component/page
 boundaries, routing, state, and guidance for extending the application.
+The [design direction](DESIGN.md) records how to refine the interface while
+preserving its CRT character.
 
 ![Screenshot of portfolio home](./public/images/portfolio-home.png)  
 ![Screenshot of portfolio project](./public/images/portfolio-projects.png)

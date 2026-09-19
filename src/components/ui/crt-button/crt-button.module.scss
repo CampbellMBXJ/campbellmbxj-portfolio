@@ -4,6 +4,22 @@
   align-items: center;
   width: 33%;
 
+  &__indicator {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    margin: 0.5rem 0 0.8rem;
+    background: #303a31;
+    box-shadow: inset 0 1px 2px #111;
+    &[data-lit="true"] {
+      background: #c2ffc1;
+      box-shadow: 0 0 7px #9fefa3;
+    }
+    &[data-lit="true"][data-tone="amber"] {
+      background: #fff0a0;
+      box-shadow: 0 0 7px #f5d269;
+    }
+  }
   &__button {
     background-image: url("/images/texture_wood.webp");
     width: 4rem;
@@ -21,7 +37,18 @@
     display: inline-block;
     border: none;
     margin: 0;
-    background: var(--silver-dark);
+    background: var(--silver-gradient);
+    box-shadow:
+      0 2px 2px #2228,
+      inset 0 1px 1px #fff9;
+    transition:
+      box-shadow 120ms,
+      transform 120ms;
+    &[aria-pressed="true"] {
+      transform: translateY(1px);
+      background: #a7a7a7;
+      box-shadow: inset 0 2px 3px #2229;
+    }
     cursor: pointer;
     -webkit-appearance: none;
     -moz-appearance: none;

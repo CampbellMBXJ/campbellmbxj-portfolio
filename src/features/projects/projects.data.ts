@@ -3,6 +3,7 @@ import type { Project } from "./project";
 export const projects: Project[] = [
   {
     slug: "my-moola",
+    imageLayout: "portrait",
     title: "My Moola",
     tagline: "Australias first third-party banking application",
     technologies: [
@@ -27,7 +28,7 @@ export const projects: Project[] = [
       "/images/projects/my-moola/transaction-confirmation.png",
     ],
     linkLocation: "https://my-moola.campbellmb.com",
-    linkText: "View archived marketing site"
+    linkText: "View archived marketing site",
   },
   {
     slug: "logicraft",

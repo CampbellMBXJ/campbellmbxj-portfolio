@@ -1,8 +1,15 @@
 .projects {
-  display: flex;
-  flex: 1;
-  align-self: stretch;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: 2.8rem;
+  width: 100%;
+  padding: 3rem 0;
+}
+@media (max-width: 1050px) {
+  .projects {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+  }
 }

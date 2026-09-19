@@ -13,14 +13,27 @@ type ControlPanelProps = {
   onSelectChannel(index: number): void;
 };
 
-const ControlPanel: FC<ControlPanelProps> = ({ channelIndex, onSelectChannel }) => {
-  const { isMuted, isPowered, toggleIsMuted, toggleIsPowered } = useTvControls();
+const ControlPanel: FC<ControlPanelProps> = ({
+  channelIndex,
+  onSelectChannel,
+}) => {
+  const { isMuted, isPowered, toggleIsMuted, toggleIsPowered } =
+    useTvControls();
 
   return (
     <MetallicPanel>
       <div className={styles["control-panel__btn-container"]}>
-        <CrtButton onClick={toggleIsPowered} label="POWER" pressed={isPowered}></CrtButton>
-        <CrtButton onClick={toggleIsMuted} label="MUTE" pressed={isMuted}></CrtButton>
+        <CrtButton
+          onClick={toggleIsPowered}
+          label="POWER"
+          pressed={isPowered}
+        ></CrtButton>
+        <CrtButton
+          onClick={toggleIsMuted}
+          label="MUTE"
+          pressed={isMuted}
+          indicatorTone="amber"
+        ></CrtButton>
       </div>
       <div className={styles["control-panel__selector"]}>
         <CrtLabel>Channel</CrtLabel>

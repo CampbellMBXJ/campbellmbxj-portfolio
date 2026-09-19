@@ -1,38 +1,47 @@
-import { useId, type FC } from "react";
+import { useId } from "react";
 import type { Project } from "../project";
 import ProjectGallery from "../project-gallery/project-gallery";
 import CrtModal from "@/components/ui/crt-modal/crt-modal";
 import cn from "classnames";
 import styles from "./project-modal.module.scss";
 
-type ProjectModalProps = {
-  onClose: () => void;
-  project: Project;
-};
+type Props = { project: Project; onClose(): void };
 
-const ProjectModal: FC<ProjectModalProps> = ({ onClose, project }) => {
+export default function ProjectModal({ project, onClose }: Props) {
   const titleId = useId();
   return (
-    <CrtModal onClose={onClose} labelledBy={titleId}>
-      <h3 id={titleId} className={styles["project-modal__heading"]}>{project.title}</h3>
-      {!!project.images && <ProjectGallery images={project.images} title={project.title} />}
-      {!!project.linkLocation && !!project.linkText && (
-        <a href={project.linkLocation} target={"_blank"} rel="noreferrer">
-          <span
-            className={cn(
-              styles["project-modal__link"],
-              "link",
-              "link--dark",
-              "not-selectable"
-            )}
-          >
-            {project.linkText}
-          </span>
-        </a>
-      )}
-      <div className={cn(styles["project-modal__description"])}>{project.description}</div>
+    <CrtModal onClose={onClose} labelledBy={titleId} title={project.title}>
+      <div
+        className={cn(
+          styles.details,
+          project.imageLayout === "portrait" && styles["details--portrait"],
+        )}
+      >
+        {!!project.images?.length && (
+          <ProjectGallery images={project.images} title={project.title} />
+        )}
+        <div className={styles.details__copy}>
+          {project.tagline && <h4>{project.tagline}</h4>}
+          <div className={styles.details__description}>
+            {project.description}
+          </div>
+          {project.technologies && (
+            <p className={styles.details__technologies}>
+              {project.technologies.join(" · ")}
+            </p>
+          )}
+          {project.linkLocation && project.linkText && (
+            <a
+              href={project.linkLocation}
+              target="_blank"
+              rel="noreferrer"
+              className="link"
+            >
+              {project.linkText} <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </div>
+      </div>
     </CrtModal>
   );
-};
-
-export default ProjectModal;
+}

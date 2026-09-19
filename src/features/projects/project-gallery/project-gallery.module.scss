@@ -1,51 +1,83 @@
-.carousel {
-  :global(.slide) { padding-top: 0.8rem; }
-  &__item {
-    position: relative;
-    height: 30rem;
+.gallery {
+  min-width: 0;
+  &__caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.4rem 0 0;
+    color: var(--vhs-blue);
   }
-
+  &__caption span,
+  &__caption a {
+    font-size: 1.3rem;
+  }
+  &__caption a {
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+  }
+}
+.carousel {
+  border: 1px solid #476068;
+  background: #071115;
+  :global(.control-dots) {
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    margin: 0;
+    height: 3rem;
+    background: #071115e6;
+  }
+  &__item {
+    display: block;
+    position: relative;
+    height: clamp(28rem, 46vh, 46rem);
+    img {
+      padding: 1.2rem 3.2rem 3.4rem;
+    }
+  }
   &__arrow {
-    border: 0;
-    padding: 0;
-    background: none;
-    color: inherit;
-    font-family: inherit;
-    line-height: inherit;
-    text-shadow: inherit;
     position: absolute;
     z-index: 2;
-    top: calc(50% - 1.75rem);
+    top: calc(50% - 2rem);
+    width: 3.2rem;
+    height: 4rem;
+    border: 0;
+    background: #102229cc;
+    color: var(--vhs-blue);
+    font: inherit;
+    font-size: 2.5rem;
+    text-shadow: inherit;
     cursor: pointer;
-    font-size: 3.5rem;
-
     &--left {
-      left: 15px;
+      left: 0;
     }
-
     &--right {
-      right: 15px;
+      right: 0;
+    }
+    &:hover {
+      background: #2d4d57;
     }
   }
-
   &__indicator-item {
     display: inline-block;
   }
-
   &__indicator {
     border: 0;
-    padding: 0;
+    padding: 0.8rem 0.5rem;
     background: none;
-    color: inherit;
-    line-height: inherit;
-    text-shadow: inherit;
+    color: #71858b;
+    font: inherit;
+    font-size: 0.8rem;
     cursor: pointer;
-    font-size: 0.6rem;
-    display: inline-block;
-    margin: 0 0.3rem;
-
+    text-shadow: inherit;
     &--active {
-      color: var(--gray-light);
+      color: var(--phosphor);
     }
+  }
+}
+@media (max-width: 700px) {
+  .carousel__item {
+    height: 34rem;
   }
 }

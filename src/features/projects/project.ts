@@ -9,4 +9,5 @@ export interface Project {
   technologies?: string[];
   description: ReactNode;
   images?: string[];
+  imageLayout?: "portrait" | "landscape";
 }

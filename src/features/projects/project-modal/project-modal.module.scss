@@ -1,14 +1,35 @@
-.project-modal {
-  &__heading {
-    margin-bottom: 3rem;
+.details {
+  display: grid;
+  gap: 2.4rem;
+  min-width: 0;
+  &__copy {
+    min-width: 0;
+    align-self: center;
   }
-
-  &__link {
-    display: block;
-    margin-top: 2rem;
+  &__copy h4 {
+    font-size: 2rem;
+    color: var(--vhs-blue);
+    margin: 0 0 1.6rem;
   }
-
   &__description {
-    margin-top: 2rem;
+    line-height: 1.5;
+  }
+  &__technologies {
+    font-size: 1.4rem;
+    color: var(--screen-muted);
+    padding-top: 1.6rem;
+    border-top: 1px solid #476068;
+  }
+  &__copy > a {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    text-underline-offset: 0.4rem;
+  }
+}
+@media (min-width: 1000px) {
+  .details--portrait {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
   }
 }

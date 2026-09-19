@@ -1,26 +1,72 @@
-@use '../../../styles/mixins.scss';
-
+@use "../../../styles/mixins.scss";
 .project-tile {
-  width: 100%;
-  margin: 2rem 0;
-  padding: 2rem;
-  cursor: pointer;
-
+  min-width: 0;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  background: rgba(9, 19, 24, 0.78);
+  transition:
+    background 160ms,
+    box-shadow 160ms;
+  @include mixins.glitch-borders($border-size: 3px, $border-color: #cec6cb);
+  &:hover,
+  &:focus-visible {
+    background: rgba(25, 46, 51, 0.95);
+    box-shadow:
+      -2px 0 var(--vhs-blue),
+      2px 0 var(--vhs-pink);
+  }
+  h3 {
+    color: var(--vhs-blue);
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+  &__preview {
+    height: 18rem;
+    position: relative;
+    margin-bottom: 1.6rem;
+    background: repeating-linear-gradient(0deg, #14232a 0 2px, #101b21 2px 4px);
+    border-bottom: 1px solid #476069;
+    overflow: hidden;
+    img {
+      padding: 1rem;
+      opacity: 0.88;
+      transition: opacity 160ms;
+    }
+  }
+  &:hover &__preview img {
+    opacity: 1;
+  }
+  &__test-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--phosphor);
+  }
+  &__test-card span {
+    font-size: 3.8rem;
+  }
+  &__test-card small {
+    font-size: 1.2rem;
+    color: var(--screen-muted);
+  }
+  &__tagline {
+    margin: 0.6rem 0 1.6rem;
+  }
+  &__technologies {
+    margin: auto 0 1.8rem;
+    color: var(--screen-muted);
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
   &__link {
     margin: 0;
-    margin-left: auto;
-    width: fit-content;
-  }
-
-  @include mixins.glitch-borders(
-    $border-size: 4px,
-    $border-color: #cec6cb
-  );
-}
-
-@media only screen and (min-width: 1050px) {
-  .project-tile {
-    width: 45%;
-    margin: 4rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid #35484e;
+    text-align: right;
+    font-size: 1.5rem;
   }
 }

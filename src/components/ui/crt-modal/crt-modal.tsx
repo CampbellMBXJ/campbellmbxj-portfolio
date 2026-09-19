@@ -1,13 +1,25 @@
 import cn from "classnames";
-import { useCallback, useEffect, useRef, useState, type PropsWithChildren } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PropsWithChildren,
+} from "react";
 import styles from "./crt-modal.module.scss";
 
 type CrtModalProps = PropsWithChildren<{
   labelledBy: string;
+  title: string;
   onClose(): void;
 }>;
 
-export default function CrtModal({ children, labelledBy, onClose }: CrtModalProps) {
+export default function CrtModal({
+  children,
+  labelledBy,
+  title,
+  onClose,
+}: CrtModalProps) {
   const dialog = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [closing, setClosing] = useState(false);
@@ -15,7 +27,7 @@ export default function CrtModal({ children, labelledBy, onClose }: CrtModalProp
   const requestClose = useCallback(() => {
     if (timer.current !== null) return;
     setClosing(true);
-    timer.current = setTimeout(onClose, 1000);
+    timer.current = setTimeout(onClose, 240);
   }, [onClose]);
 
   useEffect(() => {
@@ -56,20 +68,33 @@ export default function CrtModal({ children, labelledBy, onClose }: CrtModalProp
         requestClose();
       }
       if (event.key === "Tab") {
-        const focusable = Array.from(element.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
-        )).filter((node) => node.tabIndex >= 0 && !node.matches(":disabled") &&
-          node.getClientRects().length > 0 && getComputedStyle(node).visibility !== "hidden");
+        const focusable = Array.from(
+          element.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        ).filter(
+          (node) =>
+            node.tabIndex >= 0 &&
+            !node.matches(":disabled") &&
+            node.getClientRects().length > 0 &&
+            getComputedStyle(node).visibility !== "hidden",
+        );
         event.preventDefault();
         if (focusable.length === 0) {
           element.focus({ preventScroll: true });
         } else {
           // Explicitly advance through controls so WebKit's platform keyboard
           // preferences cannot skip buttons or let focus leave the dialog.
-          const current = focusable.indexOf(document.activeElement as HTMLElement);
-          const next = current < 0
-            ? (event.shiftKey ? focusable.length - 1 : 0)
-            : (current + (event.shiftKey ? -1 : 1) + focusable.length) % focusable.length;
+          const current = focusable.indexOf(
+            document.activeElement as HTMLElement,
+          );
+          const next =
+            current < 0
+              ? event.shiftKey
+                ? focusable.length - 1
+                : 0
+              : (current + (event.shiftKey ? -1 : 1) + focusable.length) %
+                focusable.length;
           focusable[next].focus();
         }
       }
@@ -86,17 +111,48 @@ export default function CrtModal({ children, labelledBy, onClose }: CrtModalProp
         aria-modal="true"
         aria-labelledby={labelledBy}
         tabIndex={-1}
-        className={cn(styles["crt-modal__modal"], closing && styles["crt-modal__modal--close"])}
+        className={cn(
+          styles["crt-modal__modal"],
+          closing && styles["crt-modal__modal--close"],
+        )}
         onClick={(event) => event.stopPropagation()}
       >
         <header className={styles["crt-modal__header"]}>
-          <span>1024 x 768 \ 30hz</span>
-          <button type="button" aria-label="Close dialog" className={styles["close-btn"]} onClick={requestClose}>
-            <span aria-hidden="true" className={cn(styles["close-btn__cross"], "not-selectable")}>+</span>
+          <div className={styles["crt-modal__title"]}>
+            <span className={styles["crt-modal__signal"]}>CMB / ON SCREEN</span>
+            <h3 id={labelledBy}>{title}</h3>
+          </div>
+          <button
+            type="button"
+            aria-label="Close dialog"
+            className={styles["close-btn"]}
+            onClick={requestClose}
+          >
+            <span
+              aria-hidden="true"
+              className={cn(styles["close-btn__cross"], "not-selectable")}
+            >
+              +
+            </span>
           </button>
         </header>
         <div className={styles["crt-modal__body"]}>{children}</div>
-        <footer className={styles["crt-modal__footer"]}>PRESS [ESC] TO CLOSE</footer>
+        <footer className={styles["crt-modal__footer"]}>
+          <span className={styles["crt-modal__desktop-hint"]}>
+            PRESS [ESC] TO CLOSE
+          </span>
+          <button
+            type="button"
+            className={styles["crt-modal__touch-close"]}
+            onClick={requestClose}
+          >
+            BACK TO CHANNEL
+          </button>
+          <span
+            aria-hidden="true"
+            className={styles["crt-modal__colour-bars"]}
+          />
+        </footer>
       </div>
     </div>
   );

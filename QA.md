@@ -1,5 +1,46 @@
 # QA — 2026-09-18
 
+## CRT design refinements
+
+Implemented the seven design refinements while retaining the television cabinet,
+curved screen, broadcast font, colour separation, scanlines, interference, and
+cinematic power animation. See [DESIGN.md](DESIGN.md) for the intended balance
+between CRT character and readability. No dependencies were added or changed.
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | Passed, zero warnings |
+| `pnpm typecheck` / `pnpm exec tsc --version` | Passed / TypeScript 7.0.2 |
+| `pnpm build` | Passed, all routes prerendered |
+| `pnpm test:e2e --workers=2` | 51 passed, 1 intentionally skipped |
+| `pnpm audit --json` | Zero reported vulnerabilities |
+| Development smoke checks | Passed in Chromium and WebKit at desktop and mobile sizes; no runtime/console errors |
+| Additional responsive checks | Passed at 320×568, 768×1024, 844×390, and 1920×1080; no horizontal screen/document overflow |
+| Audio and physical indicators | Transition audio respects power/mute and resumes afterward; indicator colours reflect control states |
+| Chromium touch simulation | Swiping advances the gallery without opening the image link |
+| `git diff --check` | Passed |
+
+The production suite retains the original route, history, deep-link, carousel,
+keyboard/focus, TV-control, media, video, and 404 checks. New cases exercise the
+channel guide's current-channel state, selection, focus restoration, sticky
+position after scrolling, and scroll reset on channel changes; gallery counters
+and keyboard opening of the selected full-size image in a new tab; and visible
+detail-panel titles/close controls with the mobile close action. It runs in
+Chromium, Firefox, desktop WebKit, and iPhone-sized WebKit. The existing mobile
+TV-panel case remains intentionally skipped because the panel is hidden at that
+viewport.
+
+Captured the final production app in 16 desktop/mobile views: the four main
+routes, both detail panels, the 404 page, and the new channel guide. Inspected
+the cards, timeline, reading surfaces, portrait, gallery, guide, and narrow/short
+screen layouts. Layout changes are intentional in this design pass, so the
+previous architecture refactor's pixel-geometry comparison is not an acceptance
+criterion here.
+
+No regressions were detected in the tested workflows. Tests use browser emulation;
+physical devices, subjective audio quality, and screen-reader interaction were
+not tested. The video autoplay-policy limitation documented below still applies.
+
 ## Architectural rework
 
 Reorganized application code into route entry points, project/work features,

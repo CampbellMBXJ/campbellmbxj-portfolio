@@ -1,20 +1,19 @@
 import Link from "next/link";
 import styles from "./index.module.scss";
-import cn from "classnames";
 
-const Home = () => {
+export default function Home() {
   return (
     <div className={styles.hero}>
       <h1>CAMPBELL MERCER</h1>
       <h3>SOFTWARE ENGINEER</h3>
-      <Link href="/who">
-        <h4 className={cn(styles["hero__link"], "link", "not-selectable")}>
+      <nav className={styles.hero__actions} aria-label="Explore portfolio">
+        <Link href="/who" className="link not-selectable">
           ABOUT ME
-        </h4>
-      </Link>
+        </Link>
+        <Link href="/projects" className="link not-selectable">
+          VIEW PROJECTS <span aria-hidden="true">↗</span>
+        </Link>
+      </nav>
     </div>
   );
-};
-
-
-export default Home;
+}

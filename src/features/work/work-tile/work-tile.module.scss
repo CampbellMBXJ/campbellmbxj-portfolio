@@ -1,26 +1,67 @@
-@use '../../../styles/mixins.scss';
-
 .work-tile {
-  width: 100%;
-  margin: 2rem 0;
-  padding: 2rem;
-  cursor: pointer;
-
+  position: relative;
+  display: block;
+  padding: 2rem 2.4rem;
+  border-bottom: 1px solid #466168;
+  background: rgba(9, 19, 24, 0.74);
+  transition:
+    background 160ms,
+    box-shadow 160ms;
+  &::before {
+    content: "";
+    position: absolute;
+    left: -2.5rem;
+    top: 2.5rem;
+    width: 0.8rem;
+    height: 0.8rem;
+    background: var(--vhs-blue);
+    box-shadow: 0 0 8px var(--vhs-blue);
+  }
+  &:first-child::before {
+    background: var(--phosphor);
+    box-shadow: 0 0 8px var(--phosphor);
+  }
+  &:hover,
+  &:focus-visible {
+    background: rgba(25, 46, 51, 0.95);
+    box-shadow: inset 3px 0 var(--vhs-blue);
+  }
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.6rem 2rem;
+    color: var(--screen-muted);
+    margin-bottom: 1.2rem;
+  }
+  &__meta span {
+    font-size: 1.4rem;
+    letter-spacing: 0.04rem;
+  }
+  h3 {
+    font-size: 2.3rem;
+    color: var(--vhs-blue);
+  }
+  h4 {
+    font-size: 1.9rem;
+    line-height: 1.35;
+  }
+  &__technologies {
+    color: var(--screen-muted);
+    font-size: 1.4rem;
+    margin: 1.4rem 0;
+  }
   &__link {
     margin: 0;
-    margin-left: auto;
-    width: fit-content;
+    font-size: 1.5rem;
+    text-align: right;
   }
-
-  @include mixins.glitch-borders(
-    $border-size: 4px,
-    $border-color: #cec6cb
-  );
 }
-
-@media only screen and (min-width: 1050px) {
+@media (max-width: 700px) {
   .work-tile {
-    width: 45%;
-    margin: 4rem 0;
+    padding: 1.8rem 1.4rem;
+    &::before {
+      left: -1.9rem;
+    }
   }
 }
