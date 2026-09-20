@@ -17,32 +17,16 @@
   --white-primary: #e3e0e1;
   --white: #ffffff;
 
-  --silver-dark: #b9b9b9;
-  --silver-med-dark: #dddddd;
-  --silver-med-light: #e1e1e1;
-  --silver-light: #f6f6f6;
-
-  --wood: #8e4f32;
+  --wood: #493125;
+  --cabinet-texture: url("/images/hardware-walnut.webp");
+  --metal-texture: url("/images/hardware-satin-metal.webp");
+  --hardware-metal:
+    linear-gradient(135deg, #ffffff35, #00000028), var(--metal-texture);
+  --hardware-ink: #242722;
 
   --screen-panel: #101d23;
   --screen-muted: #b4c9c8;
   --phosphor: #b9f2ba;
-
-  // Gradients
-  --metalic-gradient: linear-gradient(
-    135deg,
-    #818181 0%,
-    #7c7c7c 51%,
-    #6d6d6d 68%,
-    #474747 100%
-  );
-  --silver-gradient: linear-gradient(
-    135deg,
-    var(--silver-dark) 0%,
-    var(--silver-med-dark) 51%,
-    var(--silver-med-light) 68%,
-    var(--silver-light) 100%
-  );
 
   // Offsets
   --shadow-offset: 0.1rem;

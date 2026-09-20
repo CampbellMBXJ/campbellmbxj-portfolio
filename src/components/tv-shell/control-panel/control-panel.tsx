@@ -26,6 +26,7 @@ const ControlPanel: FC<ControlPanelProps> = ({
         <CrtButton
           onClick={toggleIsPowered}
           label="POWER"
+          size="large"
           pressed={isPowered}
         ></CrtButton>
         <CrtButton

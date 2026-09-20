@@ -115,7 +115,9 @@ test("power, mute and channel slider preserve state during navigation", async ({
   const controls = page.locator('input[type="button"]');
   const screen = page.locator('[class*="screen__animated"]').first();
   const muteIcon = page.locator("header svg");
+  await expect(controls.nth(0)).toHaveAttribute("aria-pressed", "true");
   await controls.nth(1).click();
+  await expect(controls.nth(1)).toHaveAttribute("aria-pressed", "true");
   await expect(muteIcon).toHaveCount(1);
   const slider = page.getByRole("slider");
   await slider.focus();
@@ -124,6 +126,7 @@ test("power, mute and channel slider preserve state during navigation", async ({
   await expect(slider).toHaveValue("2");
   await expect(muteIcon).toHaveCount(1);
   await controls.nth(0).click();
+  await expect(controls.nth(0)).toHaveAttribute("aria-pressed", "false");
   await expect(screen).toHaveClass(/screen__animated--off/);
   await expect
     .poll(() => screen.evaluate((node) => getComputedStyle(node).transform))
@@ -135,6 +138,30 @@ test("power, mute and channel slider preserve state during navigation", async ({
     .toBe("matrix(1, 0, 0, 1, 0, 0)");
   await controls.nth(1).click();
   await expect(muteIcon).toHaveCount(0);
+  await expect(controls.nth(1)).toHaveAttribute("aria-pressed", "false");
+
+  // Aim at the printed scale, not an arbitrary fraction of the track. The
+  // end marks must account for the thumb's width in every browser engine.
+  const stops = page.locator('[class*="range-slider__stop"][data-selected]');
+  for (const channel of [1, 2, 3, 4, 2]) {
+    const mark = await stops.nth(channel - 1).boundingBox();
+    const track = await slider.boundingBox();
+    if (!mark || !track) throw new Error("Channel tuner is not visible");
+    await page.mouse.click(mark.x + mark.width / 2, track.y + track.height / 2);
+    await expect(slider).toHaveValue(String(channel));
+    await expect(page).toHaveURL(
+      new RegExp(`/${["", "who", "projects", "work"][channel - 1]}$`),
+    );
+  }
+  await slider.press("End");
+  await expect(slider).toHaveValue("4");
+  await slider.press("ArrowRight");
+  await expect(slider).toHaveValue("4");
+  await slider.press("Home");
+  await expect(slider).toHaveValue("1");
+  await slider.press("ArrowLeft");
+  await expect(slider).toHaveValue("1");
+  await expect(page).toHaveURL(/:\d+\/$/);
 });
 
 test("direct routes, media, resume and responsive layout", async ({
@@ -166,6 +193,8 @@ test("direct routes, media, resume and responsive layout", async ({
     "/audio/crt_static.wav",
     "/images/headshot.webm",
     "/images/cmb-logo.svg",
+    "/images/hardware-walnut.webp",
+    "/images/hardware-satin-metal.webp",
   ]) {
     const response = await request.get(path);
     expect(response.status()).toBe(200);

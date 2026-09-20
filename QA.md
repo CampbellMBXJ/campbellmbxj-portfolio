@@ -1,4 +1,48 @@
-# QA — 2026-09-18
+# QA
+
+## TV hardware refinements — 2026-09-21
+
+Implemented the full hardware pass: layered cabinet/bezel/gasket, mechanical
+buttons with recessed LEDs, aligned native channel tuner, walnut and satin-metal
+textures, a recessed cloth-backed speaker grille, printed legends, raised badge,
+and matching panel/screw detailing. CRT effects and transition timings remain.
+No dependencies were added or changed; pnpm and TypeScript 7 remain in use.
+
+| Check | Result |
+| --- | --- |
+| `pnpm lint` | Passed, zero warnings |
+| `pnpm typecheck` / `pnpm exec tsc --version` | Passed / TypeScript 7.0.2 |
+| `pnpm build` | Passed, all routes prerendered |
+| `pnpm test:e2e --workers=2` | 51 passed, 1 intentionally skipped |
+| `pnpm audit --json` | Zero reported vulnerabilities |
+| Development smoke checks | Chromium and WebKit, desktop and mobile: routes, modals, guide, focus; no runtime/console errors |
+| Additional responsive checks | 320×568, 768×1024, 844×390, 1920×1080: no horizontal screen/document overflow; modal close controls remain in view |
+| Physical controls | Chromium and WebKit: pointer-down travel, latched depth, LED colours, visible keyboard focus |
+| Audio instrumentation | Chromium: transitions play, mute and power-off suppress playback, playback resumes afterward |
+| Material assets | Both WebP textures decode at 1024×1024 in Chromium and WebKit |
+| Gallery touch simulation | Chromium: swiping advances the gallery without opening the full-size image link |
+| `git diff --check` | Passed |
+
+The production suite runs in Chromium, Firefox, desktop WebKit, and iPhone-sized
+WebKit. Extended the existing TV-control regression case to click the position of
+each printed tuner marking and verify its channel/URL, check Home/End and arrow-key
+limits, and verify button pressed states. Asset checks include both new textures.
+The one mobile hardware-panel case remains intentionally skipped because that
+panel is hidden on narrow screens. All original navigation, history, deep links,
+modals, gallery, keyboard/focus, video, media, 404, and channel-guide cases pass.
+
+Captured 16 final production desktop/mobile views covering the four channels,
+both detail panels, 404, and the guide, plus hardware states in Chromium/WebKit
+and extra responsive layouts. Inspected the frame, materials, controls, speaker,
+and narrow-screen detail panel. Visual QA caught and removed a legacy global
+engraved-text style that overrode the new printed legends; final computed styles
+and the rebuilt production suite were checked afterward.
+
+No regressions were detected in the tested workflows. These checks use emulated
+browsers; physical devices, subjective audio quality, and screen readers were
+not tested. The previously documented video autoplay-policy limitation remains.
+
+## Earlier verification — 2026-09-18
 
 ## CRT design refinements
 

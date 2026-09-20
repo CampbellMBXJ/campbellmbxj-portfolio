@@ -1,6 +1,5 @@
 import { ChangeEventHandler, FC } from "react";
 import styles from "./crt-range-slider.module.scss";
-import cn from "classnames";
 
 type RangeSliderProps = {
   label: string;
@@ -13,38 +12,14 @@ type RangeSliderProps = {
 };
 
 const RangeSlider: FC<RangeSliderProps> = (props) => {
-  const numerals = () => {
-    const segments = [];
-
-    // Iterate through step to create a label
-    for (let num = props.min; num < props.max; num += props.step) {
-      segments.push(
-        <div
-          key={num}
-          className={cn(styles["range-slider__segment"], "engraved-text")}
-        >
-          {num}
-        </div>
-      );
-    }
-
-    segments.push(
-      <div
-        key={"last"}
-        className={cn(
-          styles["range-slider__segment"],
-          styles["range-slider__segment--last"],
-          "engraved-text"
-        )}
-      >
-        {props.max}
-      </div>
-    );
-    return segments;
-  };
+  const stops: number[] = [];
+  for (let value = props.min; value < props.max; value += props.step) {
+    stops.push(value);
+  }
+  stops.push(props.max);
 
   return (
-    <div className={cn(styles["range-slider"])}>
+    <div className={styles["range-slider"]}>
       <input
         type="range"
         aria-label={props.label}
@@ -56,7 +31,22 @@ const RangeSlider: FC<RangeSliderProps> = (props) => {
         value={props.value}
         onChange={props.onChange}
       />
-      <div className={styles["range-slider__numeral-list"]}>{numerals()}</div>
+      <div className={styles["range-slider__scale"]} aria-hidden="true">
+        <div className={styles["range-slider__stops"]}>
+          {stops.map((stop) => (
+            <span
+              key={stop}
+              className={styles["range-slider__stop"]}
+              data-selected={Number(props.value) === stop}
+              style={{
+                left: `${props.max === props.min ? 0 : ((stop - props.min) / (props.max - props.min)) * 100}%`,
+              }}
+            >
+              {stop}
+            </span>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

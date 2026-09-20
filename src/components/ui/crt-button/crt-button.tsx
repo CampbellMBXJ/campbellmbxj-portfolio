@@ -6,12 +6,13 @@ type CrtButtonProps = {
   label: string;
   pressed?: boolean;
   indicatorTone?: "green" | "amber";
+  size?: "regular" | "large";
   onClick: () => void;
 };
 
 const CrtButton: FC<CrtButtonProps> = (props) => {
   return (
-    <div className={styles["crt-button"]}>
+    <div className={styles["crt-button"]} data-size={props.size ?? "regular"}>
       {props.label && <CrtLabel>{props.label}</CrtLabel>}
       {props.pressed !== undefined && (
         <span

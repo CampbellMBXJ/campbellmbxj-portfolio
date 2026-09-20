@@ -1,36 +1,49 @@
 .speaker {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.7rem;
   height: 20rem;
-  max-width: 400px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex: 1;
-  padding: 1rem;
-  padding-bottom: 1.8rem;
-  border-radius: 0.3rem;
-  position: relative;
-
-  &::before {
-    content: "";
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    height: min(20rem, 400px, 90%);
-    width: min(20rem, 400px);
-    background: var(--metalic-gradient);
-    opacity: 0.3;
-    border-radius: 50%;
-  }
-
-  &__grill {
-    flex: 1 1 0;
-    background-color: var(--gun-metal);
-    height: 100%;
+  padding: 0.8rem 0.4rem;
+  &__slot {
+    position: relative;
+    overflow: hidden;
     border-radius: 999px;
+    border: 1px solid #353a2f;
+    border-bottom-color: #d2d4bc;
+    border-right-color: #b8beaa;
+    background: #11150f;
+    box-shadow:
+      -1px -1px 1px #1e251980,
+      1px 1px 0 #eef2dc80;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow:
+        inset 2px 2px 4px #000d,
+        inset -1px -1px 2px #555b3d66;
+    }
   }
-
-  &__grill-spacer {
-    flex: 1 1 0;
+  &__cloth {
+    position: absolute;
+    inset: 0;
+    // Reconstruct the full grille width behind each opening, including gaps
+    // and slot borders, so the cone is continuous and never covers the metal.
+    width: calc(1200% + 7.7rem + 24px);
+    left: calc(-1 * var(--slot-index) * (100% + 0.7rem + 2px) - 1px);
+    background:
+      repeating-linear-gradient(0deg, #89907318 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(90deg, #8b937020 0 1px, transparent 1px 3px),
+      radial-gradient(
+        ellipse at center,
+        #0d140c 0 19%,
+        #293222 21%,
+        #172014 30%,
+        #343d2b 47%,
+        #0e160c 49%,
+        #282f22 54%,
+        #171d14 57%
+      );
   }
 }

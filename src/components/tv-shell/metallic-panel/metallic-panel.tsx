@@ -4,32 +4,36 @@ import styles from "./metallic-panel.module.scss";
 
 const MetallicPanel: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className={styles["metalic-panel"]}>
+    <div className={styles["metallic-panel"]}>
       {children}
-      
+
       {/* Screws (Position absolute - don't effect layout) */}
       <div
+        aria-hidden="true"
         className={cn(
-          styles["metalic-panel__screw"],
-          styles["metalic-panel__screw--top-left"]
+          styles["metallic-panel__screw"],
+          styles["metallic-panel__screw--top-left"],
         )}
       ></div>
       <div
+        aria-hidden="true"
         className={cn(
-          styles["metalic-panel__screw"],
-          styles["metalic-panel__screw--top-right"]
+          styles["metallic-panel__screw"],
+          styles["metallic-panel__screw--top-right"],
         )}
       ></div>
       <div
+        aria-hidden="true"
         className={cn(
-          styles["metalic-panel__screw"],
-          styles["metalic-panel__screw--bottom-left"]
+          styles["metallic-panel__screw"],
+          styles["metallic-panel__screw--bottom-left"],
         )}
       ></div>
       <div
+        aria-hidden="true"
         className={cn(
-          styles["metalic-panel__screw"],
-          styles["metalic-panel__screw--bottom-right"]
+          styles["metallic-panel__screw"],
+          styles["metallic-panel__screw--bottom-right"],
         )}
       ></div>
     </div>

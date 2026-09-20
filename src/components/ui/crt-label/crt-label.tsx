@@ -12,10 +12,14 @@ const CrtLabel: FC<PropsWithChildren<Props>> = (props) => {
       className={cn(
         styles["crt-label"],
         styles["crt-label--spaced"],
+        props.isText === false && styles["crt-label--badge"],
       )}
     >
       <div
-        className={cn(styles["crt-label__span"], props.isText !== false && styles["crt-label__span--text"], "engraved-text")}
+        className={cn(
+          styles["crt-label__span"],
+          props.isText !== false && styles["crt-label__span--text"],
+        )}
       >
         {props.children}
       </div>
