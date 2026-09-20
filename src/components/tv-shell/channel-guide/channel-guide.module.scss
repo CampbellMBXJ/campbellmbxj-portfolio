@@ -6,19 +6,21 @@
     align-items: center;
     gap: 2rem;
     padding: 1.8rem;
-    border: 1px solid #45656a;
-    background: #102329;
+    border: 1px dashed var(--osd-rule);
+    background: transparent;
     &:hover,
     &:focus-visible {
-      background: #254449;
+      background: #dce6c012;
     }
     &[aria-current="page"] {
-      border-color: var(--phosphor);
+      border-style: solid;
+      border-color: var(--osd-text);
+      box-shadow: inset 3px 0 var(--osd-text);
     }
   }
   &__number {
     font-size: 3.2rem;
-    color: var(--vhs-blue);
+    color: var(--osd-text);
   }
   &__copy {
     display: flex;
@@ -29,7 +31,7 @@
       font-size: 2rem;
     }
     small {
-      color: var(--screen-muted);
+      color: var(--osd-muted);
       font-size: 1.4rem;
     }
   }
@@ -37,7 +39,7 @@
     margin-left: auto;
     font-size: 1.2rem;
     white-space: nowrap;
-    color: var(--phosphor);
+    color: var(--osd-text);
   }
 }
 @media (max-width: 700px) {

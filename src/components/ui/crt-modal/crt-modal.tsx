@@ -132,7 +132,7 @@ export default function CrtModal({
               aria-hidden="true"
               className={cn(styles["close-btn__cross"], "not-selectable")}
             >
-              +
+              X
             </span>
           </button>
         </header>

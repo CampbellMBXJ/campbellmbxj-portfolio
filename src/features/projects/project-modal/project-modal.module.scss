@@ -8,7 +8,7 @@
   }
   &__copy h4 {
     font-size: 2rem;
-    color: var(--vhs-blue);
+    color: var(--osd-text);
     margin: 0 0 1.6rem;
   }
   &__description {
@@ -16,9 +16,9 @@
   }
   &__technologies {
     font-size: 1.4rem;
-    color: var(--screen-muted);
+    color: var(--osd-muted);
     padding-top: 1.6rem;
-    border-top: 1px solid #476068;
+    border-top: 1px dashed var(--osd-rule);
   }
   &__copy > a {
     display: inline-block;

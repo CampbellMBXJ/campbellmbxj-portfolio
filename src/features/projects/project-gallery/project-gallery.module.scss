@@ -6,7 +6,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1.4rem 0 0;
-    color: var(--vhs-blue);
+    color: var(--osd-text);
   }
   &__caption span,
   &__caption a {
@@ -18,15 +18,15 @@
   }
 }
 .carousel {
-  border: 1px solid #476068;
-  background: #071115;
+  border: 1px solid var(--osd-rule);
+  background: #0b0f09;
   :global(.control-dots) {
     display: flex;
     justify-content: center;
     bottom: 0;
     margin: 0;
     height: 3rem;
-    background: #071115e6;
+    background: #0b0f09e6;
   }
   &__item {
     display: block;
@@ -43,8 +43,8 @@
     width: 3.2rem;
     height: 4rem;
     border: 0;
-    background: #102229cc;
-    color: var(--vhs-blue);
+    background: #171d13cc;
+    color: var(--osd-text);
     font: inherit;
     font-size: 2.5rem;
     text-shadow: inherit;
@@ -56,7 +56,7 @@
       right: 0;
     }
     &:hover {
-      background: #2d4d57;
+      background: #353e2a;
     }
   }
   &__indicator-item {
@@ -66,7 +66,7 @@
     border: 0;
     padding: 0.8rem 0.5rem;
     background: none;
-    color: #71858b;
+    color: var(--osd-rule);
     font: inherit;
     font-size: 0.8rem;
     cursor: pointer;

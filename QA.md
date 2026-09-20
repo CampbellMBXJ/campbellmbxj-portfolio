@@ -1,5 +1,24 @@
 # QA
 
+## Retro on-screen menu tuning — 2026-09-21
+
+Matched power and mute cap/collar sizes and replaced the dialogs' teal/cyan/pink
+chrome with near-black surfaces, warm phosphor text, dashed rules, and a bracketed
+close control. Applied the palette to gallery controls and the channel guide.
+Preserved layout dimensions, content, focus handling, and animation timings.
+
+- `pnpm lint`, `pnpm typecheck`, and `pnpm build`: passed.
+- Production browser suite: 51 passed, one intentional mobile hardware-panel skip,
+  across Chromium, Firefox, desktop WebKit, and iPhone-sized WebKit.
+- Captured 16 desktop/mobile production views and inspected project/work dialogs,
+  the channel guide, and the equal-size physical buttons.
+- Compared 220 element measurements across 14 views with the previous hardware
+  pass. The only changes were the intended mute-button enlargement in seven
+  desktop views; all other measured bounds matched within 0.5px.
+- Verified both button caps render at 37×37px at the standard desktop viewport.
+- `git diff --check`: passed. No runtime errors in the captured views and no
+  regressions detected in the tested workflows. Physical devices were not tested.
+
 ## TV hardware refinements — 2026-09-21
 
 Implemented the full hardware pass: layered cabinet/bezel/gasket, mechanical

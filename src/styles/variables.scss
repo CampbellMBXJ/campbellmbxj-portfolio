@@ -28,6 +28,12 @@
   --screen-muted: #b4c9c8;
   --phosphor: #b9f2ba;
 
+  // Vintage on-screen menus. Keep the broadcast accent colours elsewhere.
+  --osd-surface: #11150f;
+  --osd-text: #e0e5cc;
+  --osd-muted: #b3bba2;
+  --osd-rule: #737d64;
+
   // Offsets
   --shadow-offset: 0.1rem;
 }

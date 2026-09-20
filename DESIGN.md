@@ -9,8 +9,8 @@ improvements should tune these effects, not remove the visual identity.
 
 - Headings and channel labels retain strong colour separation. Reading copy uses
   slightly softer RGB shadows, tighter tracking, and more generous line spacing.
-- Detail panels use dark scanlined surfaces, phosphor-green headings, cyan rules,
-  pink close controls, and small television colour bars. Their title and close
+- Detail panels use near-black scanlined surfaces, warm phosphor text, dotted
+  rules, bracketed close controls, and small television colour bars. Their title and close
   control stay visible while the body scrolls.
 - Project cards use existing screenshots or typographic test-card graphics.
   Work experience uses a chronological broadcast-schedule treatment with company,
@@ -35,8 +35,8 @@ layers around the glass. Their highlights sit above and to the left, with darker
 recesses below and to the right. The narrow-screen frame keeps all three layers.
 
 The power and mute buttons have dark Bakelite collars, domed ivory caps, recessed
-indicator lenses, and separate momentary and latched depths. Power is slightly
-larger; its green indicator and mute's amber indicator follow their pressed state.
+indicator lenses, and separate momentary and latched depths. Both caps and collars
+are the same size; green power and amber mute indicators follow their pressed state.
 Printed legends sit directly on the panel, with a raised CMB manufacturer badge.
 
 The tuner retains a native range input for pointer, touch, and keyboard operation.
